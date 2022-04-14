@@ -4,9 +4,7 @@
 ---
 cff-version: 1.2.0
 title: railtoolkit/schema
-message: >-
-  If you use this software, please cite it using
-  these metadata.
+message:  If you use this software, please cite it using these metadata.
 type: software
 authors:
   - given-names: Martin
@@ -14,10 +12,17 @@ authors:
     email: m.scheidt@tu-bs.de
     affiliation: TU Braunschweig
     orcid: 'https://orcid.org/0000-0002-9384-8945'
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.6462039
+    description: >-
+      This DOI represents all versions, and will
+      always resolve to the latest one.
 abstract: >-
-  This repo collects the descriptions of the
-  structure and the validation constraints of tools
-  in the railtoolkit in JSON schemas. It is,
-  therefore, an alternative to
-  [RailML](https://www.railml.org/).
+  This repo collects the descriptions of the structure and the validation
+  constraints of tools in the railtoolkit in JSON schemas. It is, therefore,
+  an alternative to <a href="https://www.railml.org/">RailML</a>.
+keywords:
+  - schema
+  - railway
 license: ISC

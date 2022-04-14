@@ -1,6 +1,6 @@
 # RailToolKit Schema
 
-[![License: ISC](https://img.shields.io/badge/license-ISC-green.svg)](https://opensource.org/licenses/ISC)
+[![License: ISC](https://img.shields.io/badge/license-ISC-green.svg)](https://opensource.org/licenses/ISC) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6462039.svg)](https://doi.org/10.5281/zenodo.6462039) [![continuous integration test](https://github.com/railtoolkit/schema/actions/workflows/testing.yaml/badge.svg)](https://github.com/railtoolkit/schema/actions/workflows/testing.yaml)
 
 ------------
 

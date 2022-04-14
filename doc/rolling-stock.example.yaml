@@ -1,0 +1,42 @@
+%YAML 1.2
+---
+vehicle:
+  name: Siemens Desiro Classic # (source: https://de.wikipedia.org/wiki/Siemens_Desiro_Classic)
+  id: BR642
+  UUID: bb53ecc8-35ff-4c63-b480-a342f99e973b
+  picture: https://commons.wikimedia.org/wiki/File:Liesel_28-11-10_642_055-8_im_Bahnhof_Scharfenstein.JPG
+  vehicle_type: multiple unit  # "freight", "passenger", "traction unit" or "multiple unit"
+  power_type: diesel           # "diesel", "electric", or "steam"
+
+  ## main attributes
+  length: 41.7            # in m
+  mass: 68.0              # in t
+  load_limit: 20.0        # in t
+  mass_traction: 52.8     # in t # mass on driving axles of the traction unit
+  speed_limit: 120        # in km/h
+  a_braking: -0.4253      # in m/s^2 # TODO see Roadmap in README.md
+
+  ## coefficients for the vehicle resistance
+  rotation_mass: 1.08     # without dimension
+  base_resistance: 3.0    # in ‰ # coefficient for basic resistance
+  rolling_resistance: 1.4 # in ‰ # coefficient for resistance of rolling axles
+  air_resistance: 0.003   # in ‰ # coefficient for air resistance
+
+  ## tractive effort as pairs of speed and tractive force
+  tractive_effort:        # [v in km/h, F_T in N]
+    - [0.0, 94400]
+    - [10.0, 80000]
+    - [20.0, 61330]
+    - [30.0, 42630]
+    - [40.0, 35600]
+    - [50.0, 32220]
+    - [60.0, 25540]
+    - [70.0, 22990]
+    - [80.0, 19400]
+    - [100.0, 14810]
+    - [120.0, 13380]
+
+train:
+  name: Regional Train
+  id: RB50-1
+  vehicles: [BR642,BR642]

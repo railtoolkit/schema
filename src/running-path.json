@@ -1,0 +1,65 @@
+{
+  "$comment": "================[HEADER]=====================",
+  "$id": "https://railtoolkit.org/schema/running-path.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Running Path",
+  "description": "Consecutive values of permitted speed and resistance",
+  "type": "object",
+  "$comment": "=================[BODY]======================",
+  "required": [ "path" ],
+  "$comment": "in alphabetical order",
+  "properties": {
+    "path": {
+      "required": [ "name", "id", "characteristic_sections" ],
+      "type": "object",
+      "properties": {
+        "characteristic_sections": {
+          "description": "",
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "description": "",
+            "prefixItems": [
+              { "type": "number" },
+              { "type": "number" },
+              { "type": "number" }
+            ]
+          }
+        },
+        "id": {
+          "description": "Identifier of the path",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the path",
+          "type": "string"
+        },
+        "points_of_interest": {
+          "description": "",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "description": "",
+            "prefixItems": [
+              { "type": "number" },
+              { "type": "string" },
+              { "enum": [ "front", "rear" ] }
+            ]
+          }
+        },
+        "UUID": {
+          "description": "The unique identifier for a path",
+          "type": "string",
+          "format": "uuid"
+        }
+      }
+    }
+  }
+}

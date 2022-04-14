@@ -7,4 +7,10 @@ Please note we have a code of conduct, please follow it in all your interactions
 
 # Pull Request Process
 
-DESCRIPTION
+## Minor Changes and Fixes
+
+TODO: DESCRIPTION
+
+## Breaking Changes
+
+TODO: DESCRIPTION

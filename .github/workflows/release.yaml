@@ -1,0 +1,97 @@
+### github action to make and publish a release
+##
+name: release
+
+## Controls when the workflow will run
+on:
+  ## Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    tags:
+      - "[0-9][0-9][0-9][0-9].[0-1][0-9]" # match calendar versioning
+
+## A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  create_package:
+    name: "create a snapshot package"
+    outputs:
+      version: ${{ steps.tag.outputs.tag }}
+    runs-on: ubuntu-latest
+    steps:
+      # 1. get varibale tag and put it in ${{ steps.tag.outputs.tag }}
+      - name: "get tag"
+        id: tag
+        uses: dawidd6/action-get-tag@v1
+        with:
+          # Optionally strip `v` prefix
+          strip_v: false
+
+      # 2. checkout the repo
+      - name: "checkout"
+        uses: actions/checkout@v2
+
+      # 3. create release notes
+      - name: "create release notes"
+        run: |
+          TOP=$(grep -n "Version \[${{ steps.tag.outputs.tag }}\]" CHANGELOG.md | cut -d: -f1)
+          awk "NR>$TOP" CHANGELOG.md > release-note.tmp.md
+          BOTTOM=$(grep -n -m 1 "## Version\|[Unreleased]:" release-note.tmp.md | cut -d: -f1)
+          BOTTOM=$(( $TOP + $BOTTOM ))
+          BOTTOM=$(( $BOTTOM - 2 ))
+          TOP=$(( $TOP + 1 ))
+          awk "NR>$TOP&&NR<$BOTTOM" CHANGELOG.md > release-note-${{ steps.tag.outputs.tag }}.md
+          sed -i -- "s/###/##/g" release-note-${{ steps.tag.outputs.tag }}.md
+          rm release-note.tmp.md
+
+      # 3. create release archive
+      - uses: papeloto/action-zip@v1
+        with:
+          files: src/ doc/ README.md
+          dest: railtoolkit-schema-${{ steps.tag.outputs.tag }}.zip
+
+      # 5. upload artifact to share it with other jobs
+      - uses: actions/upload-artifact@v3
+        with:
+          path: |
+            release-note-${{ steps.tag.outputs.tag }}.md
+            railtoolkit-schema-${{ steps.tag.outputs.tag }}.zip
+          if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn`
+
+  publish_github:
+    needs: create_package
+    name: "publish on github"
+    runs-on: ubuntu-latest
+    steps:
+      # 1. download artifact in folder artifact/
+      - uses: actions/download-artifact@v3
+
+      # 2. creating a new release
+      - name: "create release"
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body_path: artifact/release-note-${{needs.create_package.outputs.version}}.md
+          draft: false
+          prerelease: false
+
+      # 3. upload package to new release
+      - name: "upload release asset"
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: artifact/railtoolkit-schema-${{needs.create_package.outputs.version}}.zip
+          asset_name: railtoolkit-schema-${{needs.create_package.outputs.version}}.zip
+          asset_content_type: application/zip
+
+      # 4. publish release on github
+      - name: "publish release"
+        uses: StuYarrow/publish-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          id: ${{ steps.create_release.outputs.id }}

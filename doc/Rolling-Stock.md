@@ -21,7 +21,7 @@ All attributes for a single vehicle are collected under the mapping `vehicle` in
 | `length`             | required  | The length of the vehicle in meter. |
 | `load_limit`         | optional  | The maximum permitted load of the vehicle in metric ton. |
 | `mass_traction`      | optional  | The mass on the powered axles of the vehicle in metric ton. |
-| `mass`               | required  | The empty mass of the vehicle in metric ton. |
+| `mass`               | required  | The empty mass (dead weight) of the vehicle in metric ton. |
 | `name`               | required  | Name of the vehicle. |
 | `picture`            | optional  | A [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier) with a picture for humans. | 
 | `power_type`         | optional  | Type of propulsion; values: `diesel`, `electric`, or `steam`. |

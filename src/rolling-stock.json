@@ -6,130 +6,148 @@
   "description": "Rolling stock data",
   "type": "object",
   "$comment": "=================[BODY]======================",
+  "required": [ "schema", "schema_version" ],
   "anyOf": [
-    {"required": [ "vehicle" ] },
-    {"required": [ "train" ] }
+    {"required": [ "trains" ] },
+    {"required": [ "vehicles" ] }
   ],
   "$comment": "in alphabetical order",
   "properties": {
-    "train": {
-      "required": [ "name", "id", "vehicles" ],
-      "type": "object",
-      "properties": {
-        "id": {
-          "description": "Identifier of the train",
-          "type": "string"
-        },
-        "name": {
-          "description": "Name of the train",
-          "type": "string"
-        },
-        "UUID": {
-          "description": "The unique identifier for a train",
-          "type": "string",
-          "format": "uuid"
-        },
-        "vehicles": {
-          "description": "Collection of vehicles that form the train",
-          "type": "array",
-          "minItems": 1,
-          "uniqueItems": false,
-          "items": {
+    "schema": {
+      "description": "Identifier of the schema",
+      "enum": [ "https://railtoolkit.org/schema/rolling-stock.json" ]
+    },
+    "schema_version": {
+      "description": "Version of the schema",
+      "type": "string",
+      "pattern": "[2-9][0-9][0-9][0-9].[0-1][0-9]"
+    },
+    "trains": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "required": [ "name", "id", "formation" ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "Identifier of the train",
             "type": "string"
+          },
+          "name": {
+            "description": "Name of the train",
+            "type": "string"
+          },
+          "UUID": {
+            "description": "The unique identifier for a train",
+            "type": "string",
+            "format": "uuid"
+          },
+          "formation": {
+            "description": "Collection of vehicles that form the train",
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": false,
+            "items": {
+              "type": "string"
+            }
           }
         }
       }
     },
-    "vehicle": {
-      "required": [ "name", "id", "vehicle_type", "length", "mass" ],
-      "type": "object",
-      "properties": {
-        "air_resistance": {
-          "description": "coefficient for air resistance in permil",
-          "type": "number",
-          "exclusiveMinimum": 0
-        },
-        "base_resistance": {
-          "description": "coefficient for basic resistance in permil",
-          "type": "number",
-          "exclusiveMinimum": 0
-        },
-        "id": {
-          "description": "Identifier of the vehicle",
-          "type": "string"
-        },
-        "length": {
-          "description": "The length of the vehicle in meter",
-          "type": "number",
-          "exclusiveMinimum": 0
-        },
-        "load_limit": {
-          "description": "The maximum permitted load of the vehicle in metric ton",
-          "type": "number",
-          "exclusiveMinimum": 0
-        },
-        "mass_traction": {
-          "description": "The mass on the powered axles of the vehicle in metric ton",
-          "type": "number",
-          "exclusiveMinimum": 0
-        },
-        "mass": {
-          "description": "The empty mass of the vehicle in metric ton",
-          "type": "number",
-          "exclusiveMinimum": 0
-        },
-        "name": {
-          "description": "Name of the vehicle",
-          "type": "string"
-        },
-        "picture": {
-          "description": "A URI with a picture for humans",
-          "type": "string",
-          "format": "uri"
-        },
-        "power_type": {
-          "description": "Type of propulsion",
-          "enum": [ "diesel", "electric", "steam" ]
-        },
-        "rolling_resistance": {
-          "description": "coefficient for resistance of rolling axles in permil",
-          "type": "number",
-          "exclusiveMinimum": 0
-        },
-        "rotation_mass": {
-          "description": "Factor for rotating mass; >= 1",
-          "type": "number",
-          "minimum": 1
-        },
-        "speed_limit": {
-          "description": "Maximum permitted speed in kilometers per hour",
-          "type": "number",
-          "exclusiveMinimum": 0
-        },
-        "tractive_effort": {
-          "description": "Tractive effort as pairs of speed in kilometers per hour and tractive force in newton",
-          "type": "array",
-          "minItems": 3,
-          "uniqueItems": true,
-          "items": {
+    "vehicles": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "required": [ "name", "id", "vehicle_type", "length", "mass" ],
+        "type": "object",
+        "properties": {
+          "air_resistance": {
+            "description": "coefficient for air resistance in permil",
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "base_resistance": {
+            "description": "coefficient for basic resistance in permil",
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "id": {
+            "description": "Identifier of the vehicle",
+            "type": "string"
+          },
+          "length": {
+            "description": "The length of the vehicle in meter",
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "load_limit": {
+            "description": "The maximum permitted load of the vehicle in metric ton",
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "mass_traction": {
+            "description": "The mass on the powered axles of the vehicle in metric ton",
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "mass": {
+            "description": "The empty mass of the vehicle in metric ton",
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "name": {
+            "description": "Name of the vehicle",
+            "type": "string"
+          },
+          "picture": {
+            "description": "A URI with a picture for humans",
+            "type": "string",
+            "format": "uri"
+          },
+          "power_type": {
+            "description": "Type of propulsion",
+            "enum": [ "diesel", "electric", "steam" ]
+          },
+          "rolling_resistance": {
+            "description": "coefficient for resistance of rolling axles in permil",
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "rotation_mass": {
+            "description": "Factor for rotating mass; >= 1",
+            "type": "number",
+            "minimum": 1
+          },
+          "speed_limit": {
+            "description": "Maximum permitted speed in kilometers per hour",
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "tractive_effort": {
+            "description": "Tractive effort as pairs of speed in kilometers per hour and tractive force in newton",
             "type": "array",
-            "minItems": 2,
-            "maxItems": 2,
+            "minItems": 3,
             "uniqueItems": true,
             "items": {
-              "type": "number",
-              "minimum": 0
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "uniqueItems": true,
+              "items": {
+                "type": "number",
+                "minimum": 0
+              }
             }
+          },
+          "UUID": {
+            "description": "The unique identifier for a vehicle",
+            "type": "string",
+            "format": "uuid"
+          },
+          "vehicle_type": {
+            "description": "Type of vehicle",
+            "enum": [ "traction unit", "freight", "passenger", "multiple unit" ]
           }
-        },
-        "UUID": {
-          "description": "The unique identifier for a vehicle",
-          "type": "string",
-          "format": "uuid"
-        },
-        "vehicle_type": {
-          "description": "Type of vehicle",
-          "enum": [ "traction unit", "freight", "passenger", "multiple unit" ]
         }
       }
     }

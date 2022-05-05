@@ -4,15 +4,32 @@
 
 # Specification
 
-All attributes for a train are collected under the mapping `train` in alphabetical order:
+## Preamble
+
+| Attributes           | Necessity    | Description |
+| -------------------- | ------------ | ----------- |
+| `schema`             | required     | Identifier of the JSON schema. |
+| `schema_version`     | required     | Version of the JSON schema. |
+| `trains`             | optional[^1] | An array of [trains](#Attributes-in-trains). |
+| `vehicles`           | optional[^1] | An array of [vehicles](#Attributes-in-vehicles). |
+
+[^1]: At least one of attributes `trains` or `vehicles` must be present.
+
+## Attributes in "trains"
+
+All attributes for a train are collected under the array `trains: -` in alphabetical order:
+
 | Attributes           | Necessity | Description |
 | -------------------- | --------- | ----------- |
 | `id`                 | required  | Identifier of the train. |
 | `name`               | required  | Name of the train. |
 | `UUID`               | optional  | The unique identifier of the train. |
-| `vehicles`           | required  | A Collection of vehicles that form the train referenced by vehicle `id`. |
+| `formation`          | required  | A Collection of vehicles that form the train referenced by vehicle `id`. |
 
-All attributes for a single vehicle are collected under the mapping `vehicle` in alphabetical order:
+## Attributes in "vehicles"
+
+All attributes for a vehicle are collected under the array `vehicles: -` in alphabetical order:
+
 | Attributes           | Necessity | Description |
 | -------------------- | --------- | ----------- |
 | `air_resistance`     | optional  | Coefficient for air resistance in permil. |
@@ -31,3 +48,4 @@ All attributes for a single vehicle are collected under the mapping `vehicle` in
 | `tractive_effort`    | optional  | Tractive effort as pairs of speed in kilometers per hour and tractive force in newton. |
 | `UUID`               | optional  | The unique identifier for a vehicle. |
 | `vehicle_type`       | required  | Type of vehicle; values: `traction unit`, `freight`, `passenger`, or `multiple unit`. |
+

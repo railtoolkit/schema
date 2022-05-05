@@ -4,7 +4,17 @@
 
 # Specification
 
-All attributes for a train are collected under the mapping `path` in alphabetical order:
+## Preamble
+
+| Attributes           | Necessity | Description |
+| -------------------- | --------- | ----------- |
+| `schema`             | required  | Identifier of the JSON schema. |
+| `schema_version`     | required  | Version of the JSON schema. |
+| `paths`              | required  | An array of [paths](#Attributes-in-paths). |
+
+## Attributes in "paths"
+
+All attributes for a train are collected under the array `paths: -` in alphabetical order:
 | Attributes                | Necessity | Description |
 | ------------------------- | --------- | ----------- |
 | `characteristic_sections` | required  | An array of triplets with a station in meter, speed limit in kilometers per hour, and resistance in permil. |

@@ -8,7 +8,13 @@ Categories: Added, Changed, Deprecated, Removed, Fixed, and Security.
 
 ## [Unreleased]
 
-  * see roadmap in README.md
+### Added
+  * added schema and schema version (see Issue #1)
+
+### Changed
+  * renamed `vehicle` into `vehicles` and changed type to array (see Issue #2)
+  * renamed `train` into `trains` and changed type to array (see Issue #2)
+  * renamed `path` into `paths` and changed type to array (see Issue #2)
 
 
 ## Version [2022.04]

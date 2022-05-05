@@ -1,0 +1,4 @@
+%YAML 1.2
+---
+schema: https://railtoolkit.org/schema/rolling-stock.json
+schema_version: "2022.05"

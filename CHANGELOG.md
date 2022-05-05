@@ -8,7 +8,13 @@ Categories: Added, Changed, Deprecated, Removed, Fixed, and Security.
 
 ## [Unreleased]
 
+  * see roadmap in README.md
+
+
+## Version [2022.05]
+
 ### Added
+  * added tests for continuous integration
   * added schema and schema version (see Issue #1)
 
 ### Changed
@@ -25,5 +31,6 @@ Categories: Added, Changed, Deprecated, Removed, Fixed, and Security.
   * initial running-path Schema
 
 
-[Unreleased]: https://github.com/railtoolkit/schema/compare/2022.04...master
+[Unreleased]: https://github.com/railtoolkit/schema/compare/2022.05...main
+[2022.05]: https://github.com/railtoolkit/schema/compare/2022.04...2022.05
 [2022.04]: https://github.com/railtoolkit/schema/releases/tag/2022.04

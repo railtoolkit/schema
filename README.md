@@ -50,7 +50,6 @@
 # Roadmap
 
   * include breaking model in rolling-stock schema
-  * add tests for continuous integration
 
 ------------
 

@@ -29,7 +29,30 @@ jobs:
       - name: "install Ajv JSON schema validator"
         run: npm install -g ajv-cli && npm install -g ajv-formats
 
-      - name: "testing provided examples"
+      - name: "validating provided examples"
         run: |
-          ajv test --spec=draft2020 -c ajv-formats -s src/rolling-stock.json -d doc/rolling-stock.example.yaml --valid
-          ajv test --spec=draft2020 -c ajv-formats -s src/running-path.json  -d doc/running-path.example.yaml  --valid
+          ajv validate --spec=draft2020 -c ajv-formats \
+            -s src/rolling-stock.json \
+            -d doc/rolling-stock.example.yaml
+          ajv validate --spec=draft2020 -c ajv-formats \
+            -s src/running-path.json \
+            -d doc/running-path.example.yaml
+
+      - name: "testing attributes"
+        run: |
+          ajv test --spec=draft2020 -c ajv-formats \
+            -s src/rolling-stock.json \
+            -d "test/rolling-stock/invalid/*.yaml" \
+            --invalid
+          ajv test --spec=draft2020 -c ajv-formats \
+            -s src/rolling-stock.json \
+            -d "test/rolling-stock/valid/*.yaml" \
+            --valid
+          ajv test --spec=draft2020 -c ajv-formats \
+            -s src/running-path.json \
+            -d "test/running-path/invalid/*.yaml" \
+            --invalid
+          ajv test --spec=draft2020 -c ajv-formats \
+            -s src/running-path.json \
+            -d "test/running-path/valid/*.yaml" \
+            --valid

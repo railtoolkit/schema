@@ -1,0 +1,9 @@
+%YAML 1.2
+---
+schema: https://railtoolkit.org/schema/rolling-stock.json
+schema_version: "2022.05"
+vehicles:
+  - id: "1"
+    vehicle_type: freight
+    length: 1
+    mass: 1

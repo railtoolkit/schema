@@ -7,8 +7,26 @@ on:
   # Triggers the workflow on push or pull request events but only for the master branch
   pull_request:
     branches: [ main ]
+    paths-ignore:
+      - 'CHANGELOG.md'
+      - 'CITATION.cff'
+      - 'CODE_OF_CONDUCT.md'
+      - 'CONTRIBUTING.md'
+      - 'LICENSE'
+      - 'README.md'
+      - '.github/workflows/cffvalidation.yml'
+      - '.github/workflows/release.yml'
   push:
     branches: [ main ]
+    paths-ignore:
+      - 'CHANGELOG.md'
+      - 'CITATION.cff'
+      - 'CODE_OF_CONDUCT.md'
+      - 'CONTRIBUTING.md'
+      - 'LICENSE'
+      - 'README.md'
+      - '.github/workflows/cffvalidation.yml'
+      - '.github/workflows/release.yml'
     
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -24,7 +42,7 @@ jobs:
     steps:
       - name: "checkout"
         # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: "install Ajv JSON schema validator"
         run: npm install -g ajv-cli && npm install -g ajv-formats

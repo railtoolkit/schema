@@ -27,7 +27,7 @@ jobs:
 
       # 2. checkout the repo
       - name: "checkout"
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       # 3. create release notes
       - name: "create release notes"
@@ -43,13 +43,13 @@ jobs:
           rm release-note.tmp.md
 
       # 3. create release archive
-      - uses: papeloto/action-zip@v1
+      - uses: papeloto/action-zip@v1.2
         with:
           files: src/ doc/ README.md
           dest: railtoolkit-schema-${{ steps.tag.outputs.tag }}.zip
 
       # 5. upload artifact to share it with other jobs
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           path: |
             release-note-${{ steps.tag.outputs.tag }}.md
@@ -62,7 +62,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # 1. download artifact in folder artifact/
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
 
       # 2. creating a new release
       - name: "create release"
@@ -96,15 +96,15 @@ jobs:
         with:
           id: ${{ steps.create_release.outputs.id }}
 
-  publish_twitter:
+  publish_mastodon:
     needs: create_package
-    name: "tweet about it"
+    name: "Toot about it on fosstodon.org"
     runs-on: ubuntu-latest
     steps:
-    - uses: devigned/go-twitter-action@v1
-      with:
-        message: "We just release the new version ${{needs.create_package.outputs.version}} of railtoolkit/schema!"
-        apiKey: ${{ secrets.TWITTER_API_KEY }}
-        apiKeySecret: ${{ secrets.TWITTER_API_SECRET }}
-        accessToken: ${{ secrets.TWITTER_ACCESS_TOKEN }}
-        accessTokenSecret: ${{ secrets.TWITTER_ACCESS_SECRET }}
+      - uses: cbrgm/mastodon-github-action@v2
+        with:
+          message: "The new version ${{ needs.create_package.outputs.version }} of the RailToolKit Schema is available!."
+          visibility: "public" # default: public
+        env:
+          MASTODON_URL: "https://fosstodon.org/"
+          MASTODON_ACCESS_TOKEN: ${{ secrets.MASTODON_ACCESS_TOKEN }} # access token

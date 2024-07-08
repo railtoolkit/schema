@@ -1,0 +1,10 @@
+{
+  "projectName": "schema",
+  "projectOwner": "railtoolkit",
+  "files": [
+    "README.md"
+  ],
+  "commitType": "docs",
+  "commitConvention": "angular",
+  "contributorsPerLine": 7,
+}

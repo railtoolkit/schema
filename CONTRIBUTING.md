@@ -14,3 +14,12 @@ TODO: DESCRIPTION
 ## Breaking Changes
 
 TODO: DESCRIPTION
+
+## Roadmap
+
+  * include breaking model in rolling-stock schema
+  * fallback with constant acceleration and deceleration
+
+## Add yourself as a contributor
+
+To add yourself to the table of contributors, follow the [bot usage instructions](https://allcontributors.org/docs/en/bot/usage).

@@ -8,8 +8,7 @@ Categories: Added, Changed, Deprecated, Removed, Fixed, and Security.
 
 ## [Unreleased]
 
-  * see roadmap in README.md
-
+  * see roadmap in CONTRIBUTING.md
 
 ## Version [2022.05]
 

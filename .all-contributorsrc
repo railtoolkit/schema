@@ -19,6 +19,15 @@
         "example",
         "test"
       ]
+    },
+    {
+      "login": "JonathanSchoener",
+      "name": "JonathanSchoener",
+      "avatar_url": "https://avatars.githubusercontent.com/u/118694515?v=4",
+      "profile": "https://github.com/JonathanSchoener",
+      "contributions": [
+        "research"
+      ]
     }
   ]
 }

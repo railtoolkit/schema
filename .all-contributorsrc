@@ -6,5 +6,16 @@
   ],
   "commitType": "docs",
   "commitConvention": "angular",
-  "contributorsPerLine": 7
+  "contributorsPerLine": 7,
+  "contributors": [
+    {
+      "login": "kaat0",
+      "name": "Martin Scheidt",
+      "avatar_url": "https://avatars.githubusercontent.com/u/142348?v=4",
+      "profile": "https://github.com/kaat0",
+      "contributions": [
+        "code"
+      ]
+    }
+  ]
 }

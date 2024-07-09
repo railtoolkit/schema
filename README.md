@@ -85,3 +85,6 @@ See [CONTRIBUTING.md](https://github.com/railtoolkit/schema/blob/main/CONTRIBUTI
 
 [zenodo-img]: https://zenodo.org/badge/DOI/10.5281/zenodo.6462039.svg
 [zenodo-url]: https://doi.org/10.5281/zenodo.6462039
+
+[Contributors-img]: https://img.shields.io/github/all-contributors/railtoolkit/schema?color=ee8449&style=flat-square
+[Contributors-url]: #Contributors

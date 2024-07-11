@@ -53,3 +53,5 @@ $RECYCLE.BIN/
 *.msp
 # Windows shortcuts
 *.lnk
+
+node_modules

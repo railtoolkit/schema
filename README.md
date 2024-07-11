@@ -10,9 +10,11 @@
 
 ## Prerequisite
 
-  You will need a validator to validate the schema against data. This example uses the [Ajv JSON schema validator](https://ajv.js.org).
+  You will need a validator to validate the schema against data. This package provides a helper script that uses the [Ajv JSON schema validator](https://ajv.js.org).
+  Ajv rquires to have [node](https://nodejs.org/) installed.
+  
   ```bash
-  $ npm install -g ajv-cli && npm install -g ajv-formats
+  $ node --version # test if node is installed
   ```
 
 ## Usage
@@ -22,9 +24,14 @@
   $ git clone https://github.com/railtoolkit/schema.git && cd schema
   ```
 
+  Install all project dependencies:
+  ```bash
+  $ npm install
+  ```
+
   You can now validate if the data follows the schema:
   ```bash
-  $ ajv --spec=draft2020 -c ajv-formats -s src/rolling-stock.json -d doc/rolling-stock.example.yaml
+  $ npm run validate:rolling-stock doc/rolling-stock.example.yaml
   ```
   This will return:
   ```bash
@@ -32,7 +39,7 @@
   ```
   Or:
   ```bash
-  $ ajv --spec=draft2020 -c ajv-formats -s src/running-path.json -d doc/running-path.example.yaml
+  $ npm run validate:running-path doc/running-path.example.yaml
   ```
   This will return:
   ```bash

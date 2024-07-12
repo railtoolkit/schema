@@ -26,11 +26,13 @@ All attributes for paths are collected under the array `paths: -` in alphabetica
 
 All attributes for a characteristic section are collected under the array `characteristic_sections: -` sorted in ascending or descending order:
 
-| Attributes   | Necessity | Description                        |
-| ------------ | --------- | ---------------------------------- |
-| `position`   | required  | mileage in meter                   |
-| `speed`      | required  | speed limit in kilometers per hour |
-| `resistance` | required  | resistance in permil               |
+| Attributes   | Necessity    | Description                        |
+| ------------ | ------------ | ---------------------------------- |
+| `position`   | required     | mileage in meter                   |
+| `speed`      | optional[^1] | speed limit in kilometers per hour |
+| `resistance` | optional[^1] | resistance in permil               |
+
+[^1]: At least one optional attribute must be present.
 
 ## Attributes in "points of interest"
 All attributes for a point of interest (poi) are collected under the array `points_of_interest: -` sorted in ascending or descending order:

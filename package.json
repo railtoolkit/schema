@@ -7,7 +7,7 @@
     "test:stock:example": "ajv test --spec=draft2020 -c ajv-formats -s src/rolling-stock.json  -d doc/rolling-stock.example.yaml --valid",
     "test:stock:valid": "ajv test --spec=draft2020 -c ajv-formats -s src/rolling-stock.json  -d \"test/rolling-stock/valid/*.yaml\" --valid",
     "test:stock:invalid": "ajv test --spec=draft2020 -c ajv-formats -s src/rolling-stock.json -d \"test/rolling-stock/invalid/*.yaml\" --invalid",
-    "test:paths:example": "ajv test --spec=draft2020 -c ajv-formats -s src/rolling-stock.json  -d doc/rolling-stock.example.yaml --valid",
+    "test:paths:example": "ajv test --spec=draft2020 -c ajv-formats -s src/running-path.json  -d doc/running-path.example.yaml --valid",
     "test:paths:valid": "ajv test --spec=draft2020 -c ajv-formats -s src/running-path.json -d \"test/running-path/valid/*.yaml\" --valid",
     "test:paths:invalid": "ajv test --spec=draft2020 -c ajv-formats -s src/running-path.json -d \"test/running-path/invalid/*.yaml\" --invalid"
   },

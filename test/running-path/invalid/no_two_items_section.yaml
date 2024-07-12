@@ -4,11 +4,7 @@ schema: https://railtoolkit.org/schema/running-path.json
 schema_version: "2024.07"
 paths:
   - name: test
-    id: 1
+    id: "1"
     characteristic_sections:
       - position:   0.0
-        speed:      0
-        resistance: 0.00
-      - position:   0.1
-        speed:      0
-        resistance: 0.00
+        speed: 1

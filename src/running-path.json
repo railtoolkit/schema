@@ -39,19 +39,20 @@
             "uniqueItems": true,
             "items": {
               "type": "object",
-              "required": [
-                "position",
-                "speed",
-                "resistance"
+              "anyOf": [
+                {"required": [ "position", "speed" ] },
+                {"required": [ "position", "resistance" ] },
+                {"required": [ "position", "speed", "resistance" ] }
               ],
               "properties": {
                 "position": {
-                  "description": "milage in meter",
+                  "description": "mileage in meter",
                   "type": "number"
                 },
                 "speed": {
                   "description": "speed in kilometers per hour",
-                  "type": "number"
+                  "type": "number",
+                  "exclusiveMinimum": 0
                 },
                 "resistance": {
                   "description": "resistance in permil",
@@ -73,7 +74,7 @@
               ],
               "properties": {
                 "position": {
-                  "description": "milage in meter",
+                  "description": "mileage in meter",
                   "type": "number"
                 },
                 "label": {

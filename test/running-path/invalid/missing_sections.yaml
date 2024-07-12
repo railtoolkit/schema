@@ -4,4 +4,4 @@ schema: https://railtoolkit.org/schema/running-path.json
 schema_version: "2024.07"
 paths:
   - name: test
-    id: 1
+    id: "1"

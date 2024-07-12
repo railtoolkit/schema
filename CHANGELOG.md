@@ -10,12 +10,12 @@ Categories: Added, Changed, Deprecated, Removed, Fixed, and Security.
 
 ### Added
 * running path:
-  * added`description` attribute (see Issue #5)
+  * added `description` attribute (see Issue #5)
 
 ### Changed
 * running path:
   * running path arrays now contain named attributes (see Issue #4)
-  * when using `points_of_interest` minimum one item required
+  * when using `characteristic_sections` only one optional attribute (`speed` or `resistance`) must be specified
   * measures for `points_of_interest` can now take three values: "front", "middle", and "rear"
 
 ### Removed

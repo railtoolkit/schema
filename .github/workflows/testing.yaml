@@ -46,33 +46,15 @@ jobs:
         # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
         uses: actions/checkout@v4
 
-      - name: "install Ajv JSON schema validator"
-        run: npm install -g ajv-cli && npm install -g ajv-formats
+      - name: "Install npm modules"
+        run: npm install
 
-      - name: "validating provided examples"
-        run: |
-          ajv validate --spec=draft2020 -c ajv-formats \
-            -s src/rolling-stock.json \
-            -d doc/rolling-stock.example.yaml
-          ajv validate --spec=draft2020 -c ajv-formats \
-            -s src/running-path.json \
-            -d doc/running-path.example.yaml
+      - name: "Run tests"
+        run: npm test
 
-      - name: "testing attributes"
-        run: |
-          ajv test --spec=draft2020 -c ajv-formats \
-            -s src/rolling-stock.json \
-            -d "test/rolling-stock/invalid/*.yaml" \
-            --invalid
-          ajv test --spec=draft2020 -c ajv-formats \
-            -s src/rolling-stock.json \
-            -d "test/rolling-stock/valid/*.yaml" \
-            --valid
-          ajv test --spec=draft2020 -c ajv-formats \
-            -s src/running-path.json \
-            -d "test/running-path/invalid/*.yaml" \
-            --invalid
-          ajv test --spec=draft2020 -c ajv-formats \
-            -s src/running-path.json \
-            -d "test/running-path/valid/*.yaml" \
-            --valid
+      - name: "Test helper script for rolling stock"
+        run: npm run validate:rolling-stock doc/rolling-stock.example.yaml
+
+      - name: "Test helper script for rolling stock"
+        run: npm run validate:running-path doc/running-path.example.yaml
+

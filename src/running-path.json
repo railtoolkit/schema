@@ -63,7 +63,6 @@
           "points_of_interest": {
             "description": "Points where a measurement of a train run should be taken",
             "type": "array",
-            "minItems": 1,
             "uniqueItems": true,
             "items": {
               "type": "object",

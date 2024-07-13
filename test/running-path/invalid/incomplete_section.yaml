@@ -1,9 +1,10 @@
 %YAML 1.2
 ---
 schema: https://railtoolkit.org/schema/running-path.json
-schema_version: "2022.05"
+schema_version: "2024.07"
 paths:
-  - id: 1
+  - name: test
+    id: "1"
     characteristic_sections:
-      - [ 0.0, 1, 0.00 ]
-      - [ 0.1, 1, 0.00 ]
+      - position:   0.0
+      - position:   0.1

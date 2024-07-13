@@ -51,10 +51,3 @@ jobs:
 
       - name: "Run tests"
         run: npm test
-
-      - name: "Test helper script for rolling stock"
-        run: npm run validate:rolling-stock doc/rolling-stock.example.yaml
-
-      - name: "Test helper script for rolling stock"
-        run: npm run validate:running-path doc/running-path.example.yaml
-

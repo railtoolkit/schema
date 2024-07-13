@@ -8,7 +8,20 @@ Categories: Added, Changed, Deprecated, Removed, Fixed, and Security.
 
 ## [Unreleased]
 
-  * see roadmap in CONTRIBUTING.md
+### Added
+* running path:
+  * added `description` attribute (see Issue #5)
+
+### Changed
+* running path:
+  * running path arrays now contain named attributes (see Issue #4)
+  * when using `characteristic_sections` only one optional attribute (`speed` or `resistance`) must be specified
+  * measures for `points_of_interest` can now take three values: "front", "middle", and "rear"
+
+### Removed
+* running path:
+  * removed `name` attribute (see Issue #5)
+  * removed `UUID` attribute (see Issue #5)
 
 ## Version [2022.05]
 

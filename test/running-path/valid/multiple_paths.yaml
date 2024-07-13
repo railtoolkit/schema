@@ -3,16 +3,21 @@
 schema: https://railtoolkit.org/schema/running-path.json
 schema_version: "2024.07"
 paths:
-  - name: test
-    id: "1"
+  - id: "1"
+    description: "test 1"
     characteristic_sections:
       - position:   0.0
         speed:      1
         resistance: 0.00
       - position:   0.1
         speed:      1
-      - position:   0.2
         resistance: 0.00
-      - position:   0.3
+  - id: "2"
+    description: "test 2"
+    characteristic_sections:
+      - position:   0.0
+        speed:      1
+        resistance: 0.00
+      - position:   0.1
         speed:      1
         resistance: 0.00

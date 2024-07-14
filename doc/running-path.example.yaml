@@ -25,39 +25,32 @@ paths:
         label:    "1:clearing point"
         measure:  rear
     characteristic_sections:
-      - position:     0.0  # mileage in meter
-        speed:      160    # speed limit in km/h,
-        resistance:   0.00 # resistance in permil
-      - position:  1000.0
-        speed:      160
-        resistance:   1.00
-      - position:  2000.0
-        speed:      160
-        resistance:   2.00
-      - position:  3000.0
-        speed:      160
-        resistance:   5.00
-      - position:  4000.0
-        speed:      160
-        resistance:  -3.00
-      - position:  5000.0
-        speed:      160
-        resistance:   5.00
-      - position:  6000.0
-        speed:      160
+      0_000.0:  # mileage in meter
+        speed:      160  # speed limit in km/h,
+        resistance: 0.00 # resistance in permil
+      1_000.0:
+        resistance: 1.00
+      2_000.0:
+        resistance: 2.00
+      3_000.0:
+        resistance: 5.00
+      4_0000.0x:
+        resistance: -3.00
+      5_000.0:
+        resistance: 5.00
+      6_000.0:
         resistance: -10.00
-      - position:  7000.0
+      7_000.0:
         speed:       80
-        resistance:  15.00
-      - position:  8000.0
+        resistance: 15.00
+      8_000.0:
         speed:      120
         resistance: -10.00
-      - position:  8500.0
-        speed:      120
-        resistance:  20.00
-      - position:  9000.0
+      8_500.0:
+        resistance: 20.00
+      9_000.0:
         speed:      160
-        resistance:   0.00
-      - position: 10000.0
+        resistance: 0.00
+      10_000.0:
         speed:      160
-        resistance:   0.00
+      567098:

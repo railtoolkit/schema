@@ -64,10 +64,8 @@
     </tr>
   </tbody>
 </table>
-
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
-
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 See [CONTRIBUTING.md](https://github.com/railtoolkit/schema/blob/main/CONTRIBUTING.md) file if you are interested to contribute.
@@ -78,7 +76,7 @@ See [CONTRIBUTING.md](https://github.com/railtoolkit/schema/blob/main/CONTRIBUTI
   
   [![Open Source Initiative Approved License logo](https://149753425.v2.pressablecdn.com/wp-content/uploads/2009/06/OSIApproved_100X125.png "Open Source Initiative Approved License logo")](https://opensource.org)
 
-  Copyright (c) 2022, Martin Scheidt \<m.scheidt@tu-bs.de\> (ISC License)
+  Copyright (c) 2022 - 2024, Martin Scheidt (orcid.org/0000-0002-9384-8945) (ISC License)
 
   Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
 

@@ -6,24 +6,36 @@ paths:
   - id: example
     description: "Example"
     points_of_interest:
-      - position:  850.00        # mileage in meter
-        label:    "1:view point" # label name
-        measure:  front          # front, middle or rear of the passing train
+      - position: 850.00
+        id: "vp11"
+        description: "Viewpoint for distant signal 11"
+        groups: ["block 11", "view points"]
+        measure: front
       - position: 1000.00
-        label:    "1:distant signal"
-        measure:  front
+        id: "ds11"
+        description: "Distant signal for main signal 11"
+        groups: ["block 11", "signals"]
+        measure: front
       - position: 2000.00
-        label:    "1:main signal"
-        measure:  front
-      - position: 5500.00
-        label:    "A:platform"
-        measure:  middle
-      - position: 9000.00
-        label:    "3:main signal"
-        measure:  front
-      - position: 9050.00
-        label:    "1:clearing point"
-        measure:  rear
+        id: "cs11"
+        description: "combined signal 11"
+        groups: ["block 11", "block 13", "signals"]
+        measure: front
+      - position: 2500.00
+        id: "platform-a"
+        description: "Platform A"
+        groups: ["platforms", "station"]
+        measure: middle
+      - position: 3000.00
+        id: "ms13"
+        description: "Main signal 13)"
+        groups: ["block 13", "signals"]
+        measure: front
+      - position: 3050.00
+        id: "cp11"
+        description: "Block clearing point"
+        groups: ["block 11", "clearing points"]
+        measure: rear
     characteristic_sections:
       - position:     0.0  # mileage in meter
         speed:      160    # speed limit in km/h,

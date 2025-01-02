@@ -69,7 +69,7 @@
               "type": "object",
               "required": [
                 "position",
-                "label",
+                "id",
                 "measure"
               ],
               "properties": {
@@ -77,8 +77,21 @@
                   "description": "mileage in meter",
                   "type": "number"
                 },
-                "label": {
+                "id": {
+                  "description": "Identifier of the point of interest",
                   "type": "string"
+                },
+                "description": {
+                  "description": "Description of the point of interest",
+                  "type": "string"
+                },
+                "groups": {
+                  "description": "Groups this point belongs to",
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "uniqueItems": true
                 },
                 "measure": {
                   "enum": [ "front", "middle", "rear" ]

@@ -6,49 +6,53 @@
 
 ## About
 
-  This repo collects the descriptions of the structure and the validation constraints of tools in the railtoolkit in JSON schemas. It is, therefore, an alternative to [RailML](https://www.railml.org/). The JSON schemas enable the validation of YAML files in [TrainRun.jl](https://github.com/railtoolkit/TrainRun.jl.git) and [rolling-stock](https://github.com/railtoolkit/rolling-stock.git).
+This repo collects the descriptions of the structure and the validation constraints of tools in the railtoolkit in JSON schemas. It is, therefore, an alternative to [RailML](https://www.railml.org/). The JSON schemas enable the validation of YAML files in [TrainRun.jl](https://github.com/railtoolkit/TrainRun.jl.git) and [rolling-stock](https://github.com/railtoolkit/rolling-stock.git).
 
 ## Prerequisite
 
-  You will need a validator to validate the schema against data. This package provides a helper script that uses the [Ajv JSON schema validator](https://ajv.js.org).
-  Ajv rquires to have [node](https://nodejs.org/) installed.
+You will need a validator to validate the schema against data. This package provides a helper script that uses the [Ajv JSON schema validator](https://ajv.js.org).
+Ajv requires to have [node](https://nodejs.org/) installed.
   
-  ```bash
-  $ node --version # test if node is installed
-  ```
+```bash
+$ node --version # test if node is installed
+```
 
 ## Usage
 
-  You will need the schema and some data. The repo contains among others the rolling-stock schema and example data:
-  ```bash
-  $ git clone https://github.com/railtoolkit/schema.git && cd schema
-  ```
+You will need the schema and some data. The repo contains among others the rolling-stock schema and example data:
+```bash
+$ git clone https://github.com/railtoolkit/schema.git && cd schema
+```
 
-  Install all project dependencies:
-  ```bash
-  $ npm install
-  ```
+Install all project dependencies:
+```bash
+$ npm install
+```
 
-  You can now validate if the data follows the schema:
-  ```bash
-  $ npm run validate:rolling-stock doc/rolling-stock.example.yaml
-  ```
-  This will return:
-  ```bash
-  $ doc/rolling-stock.example.yaml valid
-  ```
-  Or:
-  ```bash
-  $ npm run validate:running-path doc/running-path.example.yaml
-  ```
-  This will return:
-  ```bash
-  $ doc/running-path.example.yaml valid
-  ```
+You can validate if the data follows the schema:
+```bash
+$ npm run validate:rolling-stock doc/rolling-stock.example.yaml
+$ npm run validate:running-path doc/running-path.example.yaml
+```
+
+## Testing
+
+The repository includes comprehensive test suites for both schemas:
+
+```bash
+$ npm run test           # Run all tests
+$ npm run test:stock    # Run rolling-stock tests only
+$ npm run test:paths    # Run running-path tests only
+```
+
+Each test suite includes:
+- Example file validation
+- Valid test cases
+- Invalid test cases
 
 ## Documentation
 
-  see [Rolling-Stock.md](https://github.com/railtoolkit/schema/blob/main/doc/Rolling-Stock.md) and [Running-Path.md](https://github.com/railtoolkit/schema/blob/main/doc/Running-Path.md) for information about the used attributes.
+See [Rolling-Stock.md](doc/Rolling-Stock.md) and [Running-Path.md](doc/Running-Path.md) for information about the used attributes.
 
 ## Contributors
 
@@ -68,7 +72,7 @@
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-See [CONTRIBUTING.md](https://github.com/railtoolkit/schema/blob/main/CONTRIBUTING.md) file if you are interested to contribute.
+See [CONTRIBUTING.md](CONTRIBUTING.md) file if you are interested to contribute.
 
 ------------
 

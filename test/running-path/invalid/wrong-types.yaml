@@ -1,0 +1,11 @@
+%YAML 1.2
+---
+schema: https://railtoolkit.org/schema/running-path.json
+schema_version: "2024.07"
+paths:
+  - id: "wrong-types"
+    characteristic_sections:
+      - position: "not a number"
+        speed: "160"
+      - position: 1000.0
+        resistance: "invalid" 

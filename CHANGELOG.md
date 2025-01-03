@@ -11,11 +11,15 @@ Categories: Added, Changed, Deprecated, Removed, Fixed, and Security.
 ### Added
 * running path:
   * added `description` attribute (see Issue #5)
+  * added `track` to characteristic sections for grouping track sections
+  * added `groups` array to points_of_interest for categorizing points
+  * added comprehensive test suite with valid and invalid test cases
+  * added example file with block sections and signals
 
 ### Changed
 * running path:
   * running path arrays now contain named attributes (see Issue #4)
-  * when using `characteristic_sections` only one optional attribute (`speed` or `resistance`) must be specified
+  * characteristic sections now require at least one of `speed`, `resistance`, or `track` attributes
   * measures for `points_of_interest` can now take three values: "front", "middle", and "rear"
 
 ### Removed
@@ -34,14 +38,11 @@ Categories: Added, Changed, Deprecated, Removed, Fixed, and Security.
   * renamed `train` into `trains` and changed type to array (see Issue #2)
   * renamed `path` into `paths` and changed type to array (see Issue #2)
 
-
 ## Version [2022.04]
 
 ### Added
-
   * initial rolling-stock schema
   * initial running-path Schema
-
 
 [Unreleased]: https://github.com/railtoolkit/schema/compare/2022.05...main
 [2022.05]: https://github.com/railtoolkit/schema/compare/2022.04...2022.05

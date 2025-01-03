@@ -1,0 +1,20 @@
+%YAML 1.2
+---
+schema: https://railtoolkit.org/schema/running-path.json
+schema_version: "2024.07"
+paths:
+  - id: "consistency"
+    points_of_interest:
+      - position: 2000.0  # Position within characteristic sections range
+        id: "point1"
+        measure: front
+      - position: 500.0
+        id: "point2"
+        measure: front
+    characteristic_sections:
+      - position: 0.0
+        speed: 160
+      - position: 1000.0
+        speed: 160
+      - position: 500.0  # Decreasing position value (invalid)
+        speed: 160 

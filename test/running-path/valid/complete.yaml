@@ -1,0 +1,27 @@
+%YAML 1.2
+---
+schema: https://railtoolkit.org/schema/running-path.json
+schema_version: "2024.07"
+paths:
+  - id: "complete"
+    description: "Complete test case with all fields"
+    points_of_interest:
+      - position: 850.00
+        id: "vp11"
+        description: "Viewpoint"
+        groups: ["block 11", "view points"]
+        measure: front
+      - position: 1000.00
+        id: "ds11"
+        description: "Signal"
+        groups: ["block 11", "signals"]
+        measure: middle
+    characteristic_sections:
+      - position: 0.0
+        speed: 160
+        resistance: 0.00
+        section_id: "line_1"
+      - position: 1000.0
+        speed: 120
+        resistance: 1.00
+        section_id: "line_1" 

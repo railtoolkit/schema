@@ -43,8 +43,7 @@
                 {"required": ["position"]},
                 {"anyOf": [
                   {"required": ["speed"]},
-                  {"required": ["resistance"]},
-                  {"required": ["track"]}
+                  {"required": ["resistance"]}
                 ]}
               ],
               "properties": {
@@ -55,15 +54,11 @@
                 "speed": {
                   "description": "speed in kilometers per hour",
                   "type": "number",
-                  "exclusiveMinimum": 0
+                  "minimum": 0
                 },
                 "resistance": {
                   "description": "resistance in permil",
                   "type": "number"
-                },
-                "track": {
-                  "description": "identifier for grouping track sections",
-                  "type": "string"
                 }
               }
             }

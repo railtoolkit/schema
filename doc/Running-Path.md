@@ -31,7 +31,6 @@ All attributes for a characteristic section are collected under the array `chara
 | `position`   | required     | mileage in meter                   |
 | `speed`      | optional[^1] | speed limit in kilometers per hour |
 | `resistance` | optional[^1] | resistance in permil               |
-| `track`      | optional     | identifier for grouping sections   |
 
 [^1]: At least one optional attribute must be present.
 
@@ -47,5 +46,6 @@ All attributes for a point of interest (poi) are collected under the array `poin
 | `measure`    | required  | measurement applies to the `front`, `middle` or `rear` of a train |
 
 # Example
+An example file showing a running path with block sections, signals, and platforms can be found in [running-path.example.yaml](running-path.example.yaml). The example includes various points of interest such as platform tracks, route signals, and clearing points, each with specific positions and descriptions. Below is a visual representation of the YAML structure:
 
-An example file showing a running path with block sections, signals, and platform can be found in [running-path.example.yaml](running-path.example.yaml). The example includes:
+![Running Path Example](running-path.example.png)

@@ -4,72 +4,177 @@ schema: https://railtoolkit.org/schema/running-path.json
 schema_version: "2024.07"
 paths:
   - id: example
-    description: "Example"
+    description: "Example path via track A1-AB1-AB2-B1-BC1-BC2-C1"
     points_of_interest:
-      - position: 850.00
-        id: "vp11"
-        description: "Viewpoint for distant signal 11"
-        groups: ["block 11", "view points"]
-        measure: front
-      - position: 1000.00
-        id: "ds11"
-        description: "Distant signal for main signal 11"
-        groups: ["block 11", "signals"]
-        measure: front
-      - position: 2000.00
-        id: "cs11"
-        description: "combined signal 11"
-        groups: ["block 11", "block 13", "signals"]
-        measure: front
-      - position: 2500.00
-        id: "platform-a"
-        description: "Platform A"
-        groups: ["platforms", "station"]
+      - id: "a1"
+        position: 100.00
+        description: "plattform track 1"
+        groups: ["station A"]
         measure: middle
-      - position: 3000.00
-        id: "ms13"
-        description: "Main signal 13)"
-        groups: ["block 13", "signals"]
+      - id: "s1"
+        position: 220.00
+        description: "route signal 1"
+        groups: ["station A", "block 1", "route 1"]
         measure: front
-      - position: 3050.00
-        id: "cp11"
-        description: "Block clearing point"
-        groups: ["block 11", "clearing points"]
+      - id: "cp1"
+        position: 320.00
+        description: "block clearing point"
+        groups: ["station A"]
         measure: rear
+      - id: "cp3"
+        position: 320.00
+        description: "route clearing point"
+        groups: ["station A", "block 1", "route 1"]
+        measure: rear
+      - id: "vp4"
+        position: 1450.00
+        description: "view point distant signal 4"
+        groups: ["block 2"]
+        measure: front
+      - id: "ds4"
+        position: 1700.00
+        description: "distant signal 4"
+        groups: ["block 2"]
+        measure: front
+      - id: "s4"
+        position: 2700.00
+        description: "block signal 4"
+        groups: ["block 2"]
+        measure: front
+      - id: "cp4"
+        position: 2800.00
+        description: "block clearing point"
+        groups: ["block 1"]
+        measure: rear
+      - id: "vp6"
+        position: 3750.00
+        description: "view point distant signal 6"
+        groups: ["station B", "route 2"]
+        measure: front
+      - id: "ds6"
+        position: 4000.00
+        description: "distant signal 6"
+        groups: ["station B", "route 2"]
+        measure: front
+      - id: "vp9"
+        position: 4750.00
+        description: "view point distant signal 9"
+        groups: ["block 3"]
+        measure: front
+      - id: "s6"
+        position: 5000.00
+        description: "route signal 6 and distant signal 9"
+        groups: ["station B", "route 2", "route 3", "block 3"]
+        measure: front
+      - id: "cp5"
+        position: 5100.00
+        description: "block clearing point"
+        groups: ["block 2", "station B"]
+        measure: rear
+      - id: "cp6"
+        position: 5170.00
+        description: "route clearing point"
+        groups: ["route 2", "station B"]
+        measure: rear
+      - id: "b1"
+        position: 5500.00
+        description: "plattform track 1"
+        groups: ["station B"]
+        measure: middle
+      - id: "s9"
+        position: 5650.00
+        description: "route signal 9"
+        groups: ["station B", "block 3", "route 3"]
+        measure: front
+      - id: "cp8"
+        position: 5750.00
+        description: "block clearing point"
+        groups: ["station B"]
+        measure: rear
+      - id: "vp12"
+        position: 5800.00
+        description: "view point distant signal 12"
+        groups: ["block 4"]
+        measure: front
+      - id: "cp10"
+        position: 5810.00
+        description: "route clearing point"
+        groups: ["station B", "block 3", "route 3"]
+        measure: rear
+      - id: "ds12"
+        position: 6100.00
+        description: "distant signal 12"
+        groups: ["block 4"]
+        measure: front
+      - id: "s12"
+        position: 7100.00
+        description: "block signal 12"
+        groups: ["block 4"]
+        measure: front
+      - id: "cp11"
+        position: 7200.00
+        description: "block clearing point"
+        groups: ["block 3"]
+        measure: rear
+      - id: "vp14"
+        position: 8100.00
+        description: "view point distant signal 14"
+        groups: ["station C", "route 4"]
+        measure: front
+      - id: "ds14"
+        position: 8400.00
+        description: "distant signal 14"
+        groups: ["station C", "route 4"]
+        measure: front
+      - id: "s14"
+        position: 9400.00
+        description: "block signal 14"
+        groups: ["station C", "route 4"]
+        measure: front
+      - id: "cp12"
+        position: 9500.00
+        description: "block clearing point"
+        groups: ["block 4"]
+        measure: rear
+      - id: "cp13"
+        position: 9560.00
+        description: "route clearing point"
+        groups: ["route 4"]
+        measure: rear
+      - id: "c1"
+        position: 9800.00
+        description: "plattform track 1"
+        groups: ["station C"]
+        measure: middle
     characteristic_sections:
       - position:     0.0  # mileage in meter
-        speed:      160    # speed limit in km/h,
+        speed:       60    # speed limit in km/h
         resistance:   0.00 # resistance in permil
-      - position:  1000.0
+      - position:   390.0
         speed:      160
+      - position:  1000.0
         resistance:   1.00
       - position:  2000.0
-        speed:      160
         resistance:   2.00
       - position:  3000.0
-        speed:      160
         resistance:   5.00
       - position:  4000.0
-        speed:      160
         resistance:  -3.00
       - position:  5000.0
+        speed:      120
+        resistance:   2.00
+      - position:  5810.0
         speed:      160
-        resistance:   5.00
       - position:  6000.0
-        speed:      160
         resistance: -10.00
       - position:  7000.0
-        speed:       80
         resistance:  15.00
       - position:  8000.0
-        speed:      120
         resistance: -10.00
       - position:  8500.0
-        speed:      120
         resistance:  20.00
-      - position:  9000.0
-        speed:      160
-        resistance:   0.00
-      - position: 10000.0
-        speed:      160
-        resistance:   0.00
+      - position:  9400.0
+        speed:       40
+        resistance:  -1.00
+      - position:  9950.0
+        speed:        0

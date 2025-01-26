@@ -15,17 +15,28 @@ Categories: Added, Changed, Deprecated, Removed, Fixed, and Security.
   * added `groups` array to points_of_interest for categorizing points
   * added comprehensive test suite with valid and invalid test cases
   * added example file with block sections and signals
+* rolling stock:
+  * added `description` attribute to trains and vehicles
+  * added `hydraulic` and `misc` to power_type options
+  * added `non-revenue` to vehicle_type options
 
 ### Changed
 * running path:
   * running path arrays now contain named attributes (see Issue #4)
   * characteristic sections now require at least one of `speed`, `resistance`, or `track` attributes
   * measures for `points_of_interest` can now take three values: "front", "middle", and "rear"
+* rolling stock:
+  * changed tractive_effort to require at least 3 unique pairs
+  * changed rotation_mass description to specify >= 1
 
 ### Removed
 * running path:
   * removed `name` attribute (see Issue #5)
   * removed `UUID` attribute (see Issue #5)
+* rolling stock:
+  * removed `name` attribute from trains and vehicles
+  * removed `UUID` attribute from trains and vehicles
+  * removed `diesel` from power_type options
 
 ## Version [2022.05]
 

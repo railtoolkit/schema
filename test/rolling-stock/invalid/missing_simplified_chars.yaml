@@ -1,0 +1,13 @@
+%YAML 1.2
+---
+schema: https://railtoolkit.org/schema/rolling-stock.json
+schema_version: "2024.07"
+model_fidelity: "simplified_characteristics"
+trains:
+  - id: "train1"
+    train_type: "regional"
+    simplified_characteristics:
+      speed_limit: 160
+      length: 200
+      acceleration: 0.5
+      # missing required deceleration 

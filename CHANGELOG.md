@@ -16,9 +16,11 @@ Categories: Added, Changed, Deprecated, Removed, Fixed, and Security.
   * added comprehensive test suite with valid and invalid test cases
   * added example file with block sections and signals
 * rolling stock:
-  * added `description` attribute to trains and vehicles
+  * added `description` attribute to trains and vehicles (see Issue #5)
   * added `hydraulic` and `misc` to power_type options
   * added `non-revenue` to vehicle_type options
+  * added complete schema for `simplified_characteristics` with required fields and constraints
+  * added `model_fidelity` attribute with default value "effort_tables"
 
 ### Changed
 * running path:
@@ -28,14 +30,17 @@ Categories: Added, Changed, Deprecated, Removed, Fixed, and Security.
 * rolling stock:
   * changed tractive_effort to require at least 3 unique pairs
   * changed rotation_mass description to specify >= 1
+  * changed train requirements to need either `formation` or `simplified_characteristics`
+  * changed `train_type` to include comprehensive list of train service types
+  * changed `model_fidelity` to be optional with default value
 
 ### Removed
 * running path:
   * removed `name` attribute (see Issue #5)
   * removed `UUID` attribute (see Issue #5)
 * rolling stock:
-  * removed `name` attribute from trains and vehicles
-  * removed `UUID` attribute from trains and vehicles
+  * removed `name` attribute from trains and vehicles (see Issue #5)
+  * removed `UUID` attribute from trains and vehicles (see Issue #5)
   * removed `diesel` from power_type options
 
 ## Version [2022.05]

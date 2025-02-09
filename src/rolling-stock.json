@@ -20,12 +20,22 @@
       "const": "2024.07",
       "pattern": "[2-9][0-9][0-9][0-9].[0-1][0-9]"
     },
+    "model_fidelity": {
+      "description": "Level of detail for train dynamics modeling. Defaults to 'effort_tables' if not specified",
+      "type": "string",
+      "enum": [ "simplified_characteristics", "effort_tables", "physical_model" ],
+      "default": "effort_tables"
+    },
     "trains": {
       "type": "array",
       "minItems": 1,
       "items": {
-        "required": [ "id", "formation" ],
         "type": "object",
+        "required": [ "id", "train_type" ],
+        "anyOf": [
+          {"required": [ "formation" ]},
+          {"required": [ "simplified_characteristics" ]}
+        ],
         "properties": {
           "id": {
             "description": "Identifier of the train",
@@ -35,6 +45,15 @@
             "description": "Description of the train",
             "type": "string"
           },
+          "train_type": {
+            "description": "Type of train service",
+            "type": "string",
+            "enum": [
+              "long_distance", "regional", "suburban", "metro",
+              "intermodal", "heavy_freight", "block_freight", "shunting",
+              "maintenance", "construction", "emergency", "snow_removal"
+            ]
+          },
           "formation": {
             "description": "Collection of vehicles that form the train",
             "type": "array",
@@ -42,6 +61,39 @@
             "uniqueItems": false,
             "items": {
               "type": "string"
+            }
+          },
+          "simplified_characteristics": {
+            "description": "Basic motion parameters when using simplified_characteristics model fidelity",
+            "type": "object",
+            "required": ["speed_limit", "length", "acceleration", "deceleration"],
+            "properties": {
+              "speed_limit": {
+                "description": "Maximum permitted speed in kilometers per hour",
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "length": {
+                "description": "Total length of the train in meters",
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "acceleration": {
+                "description": "Constant acceleration rate in meters per second squared",
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "deceleration": {
+                "description": "Constant service braking rate in meters per second squared (negative value)",
+                "type": "number",
+                "exclusiveMaximum": 0
+              },
+              "coasting": {
+                "description": "Deceleration rate when coasting in meters per second squared (negative value). Defaults to 0 if not specified",
+                "type": "number",
+                "maximum": 0,
+                "default": 0
+              }
             }
           }
         }

@@ -1,0 +1,13 @@
+%YAML 1.2
+---
+schema: https://railtoolkit.org/schema/rolling-stock.json
+schema_version: "2024.07"
+model_fidelity: "simplified_characteristics"
+trains:
+  - id: "train1"
+    train_type: "high_speed"
+    simplified_characteristics:
+      v_max: 160
+      length: 200
+      acceleration: 0.5
+      deceleration: -0.65 

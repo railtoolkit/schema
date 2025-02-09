@@ -4,7 +4,7 @@
     "validate:rolling-stock": "ajv --spec=draft2020 -c ajv-formats -s src/rolling-stock.json  -d ",
     "validate:running-path": "ajv --spec=draft2020 -c ajv-formats -s src/running-path.json  -d ",
     "test": "npm-run-all test:**",
-    "test:stock:example": "ajv test --spec=draft2020 -c ajv-formats -s src/rolling-stock.json  -d doc/rolling-stock.example.yaml --valid",
+    "test:stock:example": "ajv test --spec=draft2020 -c ajv-formats -s src/rolling-stock.json  -d \"doc/rolling-stock.example.*.yaml\" --valid",
     "test:stock:valid": "ajv test --spec=draft2020 -c ajv-formats -s src/rolling-stock.json  -d \"test/rolling-stock/valid/*.yaml\" --valid",
     "test:stock:invalid": "ajv test --spec=draft2020 -c ajv-formats -s src/rolling-stock.json -d \"test/rolling-stock/invalid/*.yaml\" --invalid",
     "test:stock": "npm-run-all test:stock:**",

@@ -1,0 +1,15 @@
+%YAML 1.2
+---
+schema: https://railtoolkit.org/schema/rolling-stock.json
+schema_version: "2024.07"
+model_fidelity: "simplified_characteristics"  # Options: "simplified_characteristics", "effort_tables", "physical_model"
+trains:
+  - id: IC2000-simplified_characteristics
+    description: "Intercity with a Vectron locomotive, 2 first class, 1 dining car and 5 second class coaches"
+    train_type: long_distance
+    simplified_characteristics:
+      speed_limit: 160    # km/h
+      length: 207.4       # m
+      acceleration: 0.5   # m/s^2
+      deceleration: -0.65 # m/s^2
+      coasting: -0.04     # m/s^2

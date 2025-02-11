@@ -37,24 +37,10 @@ All attributes for a train are collected under the array `trains: -` in alphabet
 | `id`                       | required     | Identifier of the train. |
 | `description`              | optional     | Description of the train. |
 | `train_type`               | optional     | Type of train service. See [Train Types](#train-types) below. |
-| `formation`                | optional[^1] | A Collection of vehicles that form the train referenced by vehicle `id`. |
-| `simplified_characteristics`| optional[^1] | Basic motion parameters when using `simplified_characteristics` model fidelity. |
+| `formation`                | optional[^2] | A Collection of vehicles that form the train referenced by vehicle `id`. |
+| `simplified_characteristics`| optional[^2] | Basic motion parameters when using `simplified_characteristics` model fidelity. |
 
-[^1]: At least one of attributes `formation` or `simplified_characteristics` must be present, depending on the selected `model_fidelity`.
-
-### Attributes in "simplified_characteristics"
-
-When using `model_fidelity: "simplified_characteristics"`, the following attributes define the basic motion parameters of a train:
-
-| Attributes           | Necessity | Description |
-| -------------------- | --------- | ----------- |
-| `speed_limit`        | required  | Maximum permitted speed in kilometers per hour. |
-| `length`            | required  | Total length of the train in meters. |
-| `acceleration`      | required  | Constant acceleration rate in meters per second squared. |
-| `deceleration`      | required  | Constant service braking rate in meters per second squared (negative value). |
-| `coasting`          | optional  | Deceleration rate when coasting in meters per second squared (negative value). Defaults to 0 if not specified. |
-
-These simplified characteristics are used when detailed vehicle dynamics are not required or available. They provide a basic but efficient way to model train movement for high-level planning and simple simulations.
+[^2]: At least one of attributes `formation` or `simplified_characteristics` must be present, depending on the selected `model_fidelity`.
 
 ### Train Types
 
@@ -77,6 +63,20 @@ The `train_type` attribute categorizes trains into three main groups:
 - `construction` - Construction site supply trains
 - `emergency` - Fire, rescue, and emergency response trains
 - `snow_removal` - Seasonal service trains
+
+### Attributes in "simplified_characteristics"
+
+When using `model_fidelity: "simplified_characteristics"`, the following attributes define the basic motion parameters of a train:
+
+| Attributes           | Necessity | Description |
+| -------------------- | --------- | ----------- |
+| `speed_limit`        | required  | Maximum permitted speed in kilometers per hour. |
+| `length`            | required  | Total length of the train in meters. |
+| `acceleration`      | required  | Constant acceleration rate in meters per second squared. |
+| `deceleration`      | required  | Constant service braking rate in meters per second squared (negative value). |
+| `coasting`          | optional  | Deceleration rate when coasting in meters per second squared (negative value). Defaults to 0 if not specified. |
+
+These simplified characteristics are used when detailed vehicle dynamics are not required or available. They provide a basic but efficient way to model train movement for high-level planning and simple simulations.
 
 ## Attributes in "vehicles"
 

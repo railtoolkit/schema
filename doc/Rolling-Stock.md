@@ -10,7 +10,7 @@
 | -------------------- | ------------ | ----------- |
 | `schema`             | required     | Identifier of the JSON schema. |
 | `schema_version`     | required     | Version of the JSON schema. |
-| `model_fidelity`     | optional     | Level of detail for train dynamics modeling. Values: `simplified_characteristics`, `effort_tables`, or `physical_model`. Defaults to `effort_tables` if not specified. |
+| `model_fidelity`     | optional     | Level of detail for train dynamics modeling. Values: `simplified`, `detailed`. Defaults to `detailed` if not specified. |
 | `trains`             | optional[^1] | An array of [trains](#Attributes-in-trains). |
 | `vehicles`           | optional[^1] | An array of [vehicles](#Attributes-in-vehicles). |
 
@@ -18,15 +18,13 @@
 
 ### Model Fidelity Rationale
 
-The `model_fidelity` attribute allows for different levels of detail in train dynamics modeling, each serving different use cases:
+The `model_fidelity` attribute specifies the level of detail for train dynamics modeling:
 
-- `simplified_characteristics`: Uses basic acceleration and deceleration parameters. Suitable for high-level planning and simple simulations where detailed dynamics are not required. Parametersare definied in `trains`.
+- `simplified`: Uses basic acceleration and deceleration parameters. Suitable for high-level planning and simple simulations where detailed dynamics are not required. Parameters are defined in `trains.simplified_characteristics`.
   
-- `effort_tables`: Uses lookup tables for tractive and braking effort over speed. Appropriate when measured or manufacturer-provided performance data is available and precise force calculations are needed. Parameters are defined in `vehicles`.
-  
-- `physical_model`: Uses physical parameters and formulas. Best suited for accurate simulations where component-level behavior and physical effects need to be considered. Parameters are defined in `vehicles`.
+- `detailed`: Uses detailed vehicle parameters including physical properties and effort tables. Appropriate for precise simulations where accurate force calculations are needed. Parameters are defined in `vehicles`.
 
-A file may contain more than one level of fidelity. Even though, the fidelity levels are mutually exclusive - only values from the selected fidelity level will be used in calculations, even if data for other levels is present in the file. The attribute `model_fidelity` can be used as switch to select the level of fidelity to be used.
+A file may contain data for both fidelity levels, but only values from the selected level will be used in calculations. The attribute `model_fidelity` acts as a switch to select which level of detail to use.
 
 ## Attributes in "trains"
 
@@ -37,7 +35,7 @@ All attributes for a train are collected under the array `trains: -` in alphabet
 | `id`                       | required     | Identifier of the train. |
 | `description`              | optional     | Description of the train. |
 | `train_type`               | optional     | Type of train service. See [Train Types](#train-types) below. |
-| `formation`                | optional[^2] | A Collection of vehicles that form the train referenced by vehicle `id`. |
+| `formation`                | optional[^2] | A Collection of vehicles that form the train referenced by vehicle `id`. Front and rear end of the train are defined by the first and last vehicle in the array. |
 | `simplified_characteristics`| optional[^2] | Basic motion parameters when using `simplified_characteristics` model fidelity. |
 
 [^2]: At least one of attributes `formation` or `simplified_characteristics` must be present, depending on the selected `model_fidelity`.
@@ -66,7 +64,7 @@ The `train_type` attribute categorizes trains into three main groups:
 
 ### Attributes in "simplified_characteristics"
 
-When using `model_fidelity: "simplified_characteristics"`, the following attributes define the basic motion parameters of a train:
+When using `model_fidelity: "simplified"`, the following attributes define the basic motion parameters of a train:
 
 | Attributes           | Necessity | Description |
 | -------------------- | --------- | ----------- |

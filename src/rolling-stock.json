@@ -21,10 +21,10 @@
       "pattern": "[2-9][0-9][0-9][0-9].[0-1][0-9]"
     },
     "model_fidelity": {
-      "description": "Level of detail for train dynamics modeling. Defaults to 'effort_tables' if not specified",
+      "description": "Level of detail for train dynamics modeling. Defaults to 'detailed' if not specified",
       "type": "string",
-      "enum": [ "simplified_characteristics", "effort_tables", "physical_model" ],
-      "default": "effort_tables"
+      "enum": [ "simplified", "detailed" ],
+      "default": "detailed"
     },
     "trains": {
       "type": "array",

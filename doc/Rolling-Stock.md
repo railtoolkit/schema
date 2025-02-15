@@ -68,11 +68,11 @@ When using `model_fidelity: "simplified"`, the following attributes define the b
 
 | Attributes           | Necessity | Description |
 | -------------------- | --------- | ----------- |
-| `speed_limit`        | required  | Maximum permitted speed in kilometers per hour. |
-| `length`            | required  | Total length of the train in meters. |
-| `acceleration`      | required  | Constant acceleration rate in meters per second squared. |
-| `deceleration`      | required  | Constant service braking rate in meters per second squared (negative value). |
-| `coasting`          | optional  | Deceleration rate when coasting in meters per second squared (negative value). Defaults to 0 if not specified. |
+| `speed_limit`        | required  | Maximum permitted speed (km/h) |
+| `length`            | required  | Total length of the train (m) |
+| `acceleration`      | required  | Constant acceleration rate (m/s²) |
+| `deceleration`      | required  | Constant service braking rate (m/s²) (negative value) |
+| `coasting`          | optional  | Deceleration rate when coasting (m/s²) (negative value). Defaults to 0 if not specified |
 
 These simplified characteristics are used when detailed vehicle dynamics are not required or available. They provide a basic but efficient way to model train movement for high-level planning and simple simulations.
 
@@ -82,19 +82,34 @@ All attributes for a vehicle are collected under the array `vehicles: -` in alph
 
 | Attributes           | Necessity | Description |
 | -------------------- | --------- | ----------- |
-| `air_resistance`     | optional  | Coefficient for air resistance in permil. |
-| `base_resistance`    | optional  | Coefficient for basic resistance in permil. |
-| `description`        | optional  | Description of the vehicle. |
-| `id`                 | required  | Identifier of the vehicle. |
-| `length`             | required  | The length of the vehicle in meter. |
-| `load_limit`         | optional  | The maximum permitted load of the vehicle in metric ton. |
-| `mass_traction`      | optional  | The mass on the powered axles of the vehicle in metric ton. |
-| `mass`               | required  | The empty mass (dead weight) of the vehicle in metric ton. |
-| `picture`            | optional  | A [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier) with a picture for humans. | 
-| `power_type`         | optional  | Type of propulsion; values: `hydraulic`, `electric`, `steam`, or `misc`. |
-| `rolling_resistance` | optional  | Coefficient for resistance of rolling axles in permil. |
-| `rotation_mass`      | optional  | Factor for rotating mass; larger or equal to 1. |
-| `speed_limit`        | optional  | Maximum permitted speed in kilometers per hour. |
-| `tractive_effort`    | optional  | Tractive effort as pairs of speed in kilometers per hour and tractive force in newton. Must contain at least 3 unique pairs. |
-| `vehicle_type`       | required  | Type of vehicle; values: `traction unit`, `freight`, `passenger`, `multiple unit`, or `non-revenue`. |
+| `air_resistance`     | optional  | Coefficient for air resistance (-) |
+| `base_resistance`    | optional  | Coefficient for basic resistance (‰) |
+| `description`        | optional  | Description of the vehicle |
+| `id`                 | required  | Identifier of the vehicle |
+| `length`             | required  | Length of the vehicle (m) |
+| `load_limit`         | optional  | Maximum permitted load (t) |
+| `mass_traction`      | optional  | Mass on powered axles (t) |
+| `mass`               | required  | Empty mass (dead weight) (t) |
+| `picture`            | optional  | A [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier) with a picture for humans | 
+| `power_type`         | optional  | Type of propulsion; values: `hydraulic`, `electric`, `steam`, or `misc` |
+| `rolling_resistance` | optional  | Coefficient for resistance of rolling axles (-) |
+| `rotation_mass`      | optional  | Factor for rotating mass; >= 1 |
+| `speed_limit`        | optional  | Maximum permitted speed (km/h) |
+| `tractive_effort`    | optional  | Tractive effort as pairs of speed (km/h) and tractive force (kN) |
+| `vehicle_type`       | required  | Type of vehicle; values: `traction unit`, `freight`, `passenger`, `multiple unit`, or `non-revenue` |
+
+### Units
+
+The schema uses common railway units for all numerical values:
+
+| Quantity         | Unit | Description |
+|------------------|------|-------------|
+| Speed            | km/h | Kilometers per hour |
+| Mass             | t    | Metric tons |
+| Length           | m    | Meters |
+| Force            | kN   | Kilonewton |
+| Power            | kW   | Kilowatt |
+| Acceleration     | m/s² | Meters per second squared |
+| Resistance       | ‰    | Per mille (mm/m) |
+| Unit-less        | -    | Dimensionless values |
 

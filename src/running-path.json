@@ -48,16 +48,16 @@
               ],
               "properties": {
                 "position": {
-                  "description": "mileage in meter",
+                  "description": "Position along the path (m)",
                   "type": "number"
                 },
                 "speed": {
-                  "description": "speed in kilometers per hour",
+                  "description": "Maximum permitted speed (km/h)",
                   "type": "number",
                   "minimum": 0
                 },
                 "resistance": {
-                  "description": "resistance in permil",
+                  "description": "Track resistance (‰)",
                   "type": "number"
                 }
               }
@@ -76,7 +76,7 @@
               ],
               "properties": {
                 "position": {
-                  "description": "mileage in meter",
+                  "description": "Position along the path (m)",
                   "type": "number"
                 },
                 "id": {

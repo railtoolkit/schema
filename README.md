@@ -40,7 +40,7 @@ $ npm run validate:running-path doc/running-path.example.yaml
 The repository includes comprehensive test suites for both schemas:
 
 ```bash
-$ npm run test           # Run all tests
+$ npm run test          # Run all tests
 $ npm run test:stock    # Run rolling-stock tests only
 $ npm run test:paths    # Run running-path tests only
 ```
@@ -52,7 +52,28 @@ Each test suite includes:
 
 ## Documentation
 
-See [Rolling-Stock.md](doc/Rolling-Stock.md) and [Running-Path.md](doc/Running-Path.md) for information about the used attributes.
+### Sub schemas
+
+See 
+* [Rolling-Stock.md](doc/Rolling-Stock.md) and 
+* [Running-Path.md](doc/Running-Path.md) 
+for information about the used attributes in the sub schemas.
+
+### Units
+
+The schema uses common railway units for all numerical values:
+
+| Quantity         | Unit | Description |
+|------------------|------|-------------|
+| Speed            | km/h | Kilometers per hour |
+| Mass             | t    | Metric tons |
+| Length           | m    | Meters |
+| Force            | kN   | Kilonewton |
+| Power            | kW   | Kilowatt |
+| Acceleration     | m/s² | Meters per second squared |
+| Resistance       | ‰    | Per mille (mm/m) |
+| Unit-less        | -    | Dimensionless values |
+
 
 ## Contributors
 

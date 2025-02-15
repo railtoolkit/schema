@@ -1,0 +1,16 @@
+%YAML 1.2
+---
+schema: https://railtoolkit.org/schema/running-path.json
+schema_version: "2024.07"
+paths:
+  - id: "test-path"
+    description: "Test path with points of interest"
+    characteristic_sections:
+      - position: 0.0     # m
+        speed: 160        # km/h
+      - position: 1000.0  # m
+        speed: 120        # km/h
+    points_of_interest:
+      - position: 500.0   # m
+        id: "point-1"
+        measure: "front" 

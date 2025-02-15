@@ -10,6 +10,6 @@ trains:
     simplified_characteristics:
       speed_limit: 160    # km/h
       length: 207.4       # m
-      acceleration: 0.5   # m/s^2
-      deceleration: -0.65 # m/s^2
-      coasting: -0.04     # m/s^2
+      acceleration: 0.5   # m/s²
+      deceleration: -0.65 # m/s²
+      coasting: -0.04     # m/s²

@@ -3,8 +3,10 @@
 schema: https://railtoolkit.org/schema/running-path.json
 schema_version: "2024.07"
 paths:
-  - id: "logical-errors"
+  - id: "test-path"
     characteristic_sections:
       - position: 0.0     # m
-        speed: -160       # km/h (invalid negative speed)
-        resistance: 1.00  # ‰ 
+        speed: 160        # km/h
+      - position: 1000.0  # m
+        speed: 120        # km/h
+        resistance: 2.0   # ‰ 

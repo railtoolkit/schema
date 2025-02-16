@@ -1,4 +1,4 @@
-# RailToolKit Schema
+# RailToolKit/schema
 
 [![License: ISC][license-img]][license-url] [![DOI][zenodo-img]][zenodo-url] [![Build Status][ci-img]][ci-url] [![All Contributors][Contributors-img]][Contributors-url]
 
@@ -6,7 +6,19 @@
 
 ## About
 
-This repo collects the descriptions of the structure and the validation constraints of tools in the railtoolkit in JSON schemas. It is, therefore, an alternative to [RailML](https://www.railml.org/). The JSON schemas enable the validation of YAML files in [TrainRun.jl](https://github.com/railtoolkit/TrainRun.jl.git) and [rolling-stock](https://github.com/railtoolkit/rolling-stock.git).
+The RailToolkit/schema provides JSON schemas for railway operations data, offering a lightweight alternative to RailML. It focuses on two main aspects:
+
+1. Rolling Stock Schema
+   - Defines train and vehicle characteristics
+   - Supports both simplified and detailed modeling approaches
+   - Includes parameters like speed, mass, resistance, and tractive effort
+
+2. Running Path Schema
+   - Describes railway paths with speed limits and track resistance
+   - Supports points of interest (signals, platforms, etc.)
+   - Enables precise position-based path descriptions
+
+The schemas use standardized railway units and can be validated using standard JSON schema tools. They are designed to support railway simulation and planning tools while maintaining simplicity and ease of use.
 
 ## Prerequisite
 

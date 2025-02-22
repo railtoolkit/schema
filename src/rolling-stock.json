@@ -88,6 +88,11 @@
                 "type": "number",
                 "exclusiveMaximum": 0
               },
+              "emergency_deceleration": {
+                "description": "Emergency braking rate (m/s²) (negative value). If not specified, defaults to the value of deceleration",
+                "type": "number",
+                "exclusiveMaximum": 0
+              },
               "coasting": {
                 "description": "Deceleration rate when coasting (m/s²) (negative value). Defaults to 0 if not specified",
                 "type": "number",

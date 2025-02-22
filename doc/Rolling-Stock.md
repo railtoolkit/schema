@@ -72,6 +72,7 @@ When using `model_fidelity: "simplified"`, the following attributes define the b
 | `length`            | required  | Total length of the train (m) |
 | `acceleration`      | required  | Constant acceleration rate (m/s²) |
 | `deceleration`      | required  | Constant service braking rate (m/s²) (negative value) |
+| `emergency_deceleration`   | optional  | Emergency braking rate (m/s²) (negative value). If not specified, defaults to the value of `deceleration` |
 | `coasting`          | optional  | Deceleration rate when coasting (m/s²) (negative value). Defaults to 0 if not specified |
 
 These simplified characteristics are used when detailed vehicle dynamics are not required or available. They provide a basic but efficient way to model train movement for high-level planning and simple simulations.

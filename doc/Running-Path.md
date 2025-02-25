@@ -47,7 +47,7 @@ Points of interest mark specific locations along the path where measurements or 
 | `groups`             | optional  | Groups this point belongs to |
 | `measure`            | required  | Position on train to measure; values: `front`, `middle`, or `rear` |
 
-### Units
+# Units
 
 The schema uses common railway units for all numerical values:
 

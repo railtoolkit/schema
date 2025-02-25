@@ -85,8 +85,8 @@ vehicles:
             force: 80.000 # in kN
       friction_brake: # Friction brake characteristics (at least one of eddy_current_brake, electrodynamic_brake or friction_brake is required for model_fidelity: "force")
         model_fidelity: "table"  # "table" or "calculated"
-        service_brake_effort: # Full service brake force in kN
-        emergency_brake_effort: # Full emergency brake force in kN 
+        service_brake_effort: 20.0 # Full service brake force in kN
+        emergency_brake_effort: 100.0 # Full emergency brake force in kN 
         brake_regime: "P" # "P","G" or "R"
         brake_effort:
           - speed:   0.0 # in km/h
@@ -101,10 +101,11 @@ vehicles:
     load_limit: 10.8     # t
     speed_limit: 200     # km/h
     brakes:
+      model_fidelity: "force"  # "force", "deceleration-one-part", "deceleration-two-part", "deceleration-three-part"
       friction_brake:
         model_fidelity: "table"  # "table" or "calculated"
-        service_brake_effort: # Full service brake force in kN
-        emergency_brake_effort: # Full emergency brake force in kN 
+        service_brake_effort: 20.0 # Full service brake force in kN
+        emergency_brake_effort: 100.0 # Full emergency brake force in kN 
         brake_regime: "P" # "P","G" or "R"
         brake_effort:
           - speed:   0.0 # in km/h
@@ -119,10 +120,11 @@ vehicles:
     load_limit: 12.0     # t
     speed_limit: 200     # km/h
     brakes:
+      model_fidelity: "force"  # "force", "deceleration-one-part", "deceleration-two-part", "deceleration-three-part"
       friction_brake:
         model_fidelity: "table"  # "table" or "calculated"
-        service_brake_effort: # Full service brake force in kN
-        emergency_brake_effort: # Full emergency brake force in kN 
+        service_brake_effort: 20.0 # Full service brake force in kN
+        emergency_brake_effort: 100.0 # Full emergency brake force in kN 
         brake_regime: "P" # "P","G" or "R"
         brake_effort:
           - speed:   0.0 # in km/h
@@ -137,10 +139,11 @@ vehicles:
     load_limit: 16.0     # t
     speed_limit: 200     # km/h
     brakes:
+      model_fidelity: "force"  # "force", "deceleration-one-part", "deceleration-two-part", "deceleration-three-part"
       friction_brake:
         model_fidelity: "table"  # "table" or "calculated"
-        service_brake_effort: # Full service brake force in kN
-        emergency_brake_effort: # Full emergency brake force in kN 
+        service_brake_effort: 20.0 # Full service brake force in kN
+        emergency_brake_effort: 100.0 # Full emergency brake force in kN 
         brake_regime: "P" # "P","G" or "R"
         brake_effort:
           - speed:   0.0 # in km/h

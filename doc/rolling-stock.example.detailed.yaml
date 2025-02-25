@@ -1,0 +1,149 @@
+%YAML 1.2
+---
+schema: https://railtoolkit.org/schema/rolling-stock.json
+schema_version: "2024.07"
+model_fidelity: "detailed" # Options: "simplified", "detailed"
+trains:
+  - id: IC2000-detailed
+    description: "Intercity with locomotive BR193, 2 first class, 1 dining car and 5 second class coaches"
+    train_type: long_distance
+    formation: [Vectron,Avmmz,Avmmz,WRkmz,Bpmmz,Bpmmz,Bpmmz,Bpmmz,Bpmmz]
+    loading_factor: [1.0,0.6,0.6,0.4,0.8,0.8,0.8,0.8,0.8]
+
+vehicles:
+  - id: Vectron
+    vehicle_type: traction unit
+    power_type: electric
+    picture: https://commons.wikimedia.org/wiki/File:Siemens_Vectron_193_837.jpg
+    description: "Siemens Vectron MS"
+    # Main attributes
+    length: 18.98         # m
+    mass: 89.0            # t
+    mass_traction: 89.0   # t
+    speed_limit: 200      # km/h
+    resistance: # Resistance coefficients (optional)
+      model_fidelity: "table"  # "table" or "calculated"
+      rotation_mass: 1.09    # -
+      base_resistance: 2.2   # ‰
+      rolling_resistance: 1.4 # -
+      air_resistance: 6.0    # -
+      resistance_effort:
+        - speed:   0.0 # in km/h
+          force: 2.2 # in ‰
+        - speed:  60.0
+          force: 2.2
+        - speed:  100.0
+          force: 2.2
+        - speed:  160.0
+          force: 2.2
+        - speed:  200.0
+          force: 2.2
+    traction: # Traction characteristics (optional)
+      model_fidelity: "table"  # "table" or "calculated"
+      rated_power: 8000.0 # kW
+      initial_tractive_force: 94.400 # kN
+      tractive_effort:
+        - speed:   0.0 # in km/h
+          force: 94.400 # in kN
+        - speed:  60.0
+          force: 80.000
+        - speed:  100.0
+          force: 80.000
+        - speed:  160.0
+          force: 80.000
+        - speed:  200.0
+          force: 80.000
+    brakes: # Braking system configuration (optional)
+      model_fidelity: "force"  # "force", "deceleration-one-part", "deceleration-two-part" or "deceleration-three-part"
+
+      reaction_time: 3 # in s the time span between recognizing the need to initiate a braking action and the actual activation of the control (required for model_fidelity: "deceleration-two-part", "deceleration-three-part")
+      response_time: 1.5 # in s the time span between the activation of the controls and the establishment of 5% of the final braking deceleration (required for model_fidelity: "deceleration-three-part")
+      threshold_time: 4 # in s the time span to develop the braking deceleration from 5% of the final/maximum deceleration to 95% of the final/maximum deceleration (required for model_fidelity: "deceleration-three-part")
+      deceleration: -0.95 # in m/s² the final/maximum braking deceleration (required for model_fidelity: "deceleration-one-part", "deceleration-two-part", "deceleration-three-part")
+      emergency_deceleration: -1.5 # in m/s² the final/maximum deceleration during emergency braking (required for model_fidelity: "deceleration-one-part", "deceleration-two-part", "deceleration-three-part")
+
+      eddy_current_brake: # Eddy current brake characteristics (at least one of eddy_current_brake, electrodynamic_brake or friction_brake is required for model_fidelity: "force")
+        model_fidelity: "calculated"  # "table" or "calculated"
+        min_speed: 10.0 # in km/h
+        max_brake_effort: 94.400 # in kN
+        power: 1000.0 # in kW
+        brake_effort:
+          - speed:   0.0 # in km/h
+            force: 94.400 # in kN
+          - speed:  10.0 # in km/h
+            force: 80.000 # in kN
+      electrodynamic_brake: # Electrodynamic brake characteristics (at least one of eddy_current_brake, electrodynamic_brake or friction_brake is required for model_fidelity: "force")
+        model_fidelity: "calculated"  # "table" or "calculated"
+        max_brake_force: 94.400 # in kN
+        speed_control_range: 10.0 # in km/h
+        speed_power_limit: 160.0 # in km/h
+        speed_field_weakening: 200.0 # in km/h, optional, field weakening of the three-phase field
+        brake_effort:
+          - speed:   0.0 # in km/h
+            force: 94.400 # in kN
+          - speed:  10.0 # in km/h
+            force: 80.000 # in kN
+      friction_brake: # Friction brake characteristics (at least one of eddy_current_brake, electrodynamic_brake or friction_brake is required for model_fidelity: "force")
+        model_fidelity: "table"  # "table" or "calculated"
+        service_brake_effort: # Full service brake force in kN
+        emergency_brake_effort: # Full emergency brake force in kN 
+        brake_regime: "P" # "P","G" or "R"
+        brake_effort:
+          - speed:   0.0 # in km/h
+            force: 94.400 # in kN
+          - speed:  10.0 # in km/h
+            force: 80.000 # in kN
+  - id: Avmmz
+    description: "First class coach"
+    vehicle_type: passenger
+    length: 26.4          # m
+    mass: 47.0           # t
+    load_limit: 10.8     # t
+    speed_limit: 200     # km/h
+    brakes:
+      friction_brake:
+        model_fidelity: "table"  # "table" or "calculated"
+        service_brake_effort: # Full service brake force in kN
+        emergency_brake_effort: # Full emergency brake force in kN 
+        brake_regime: "P" # "P","G" or "R"
+        brake_effort:
+          - speed:   0.0 # in km/h
+            force: 94.400 # in kN
+          - speed:  10.0 # in km/h
+            force: 80.000 # in kN
+  - id: WRkmz
+    description: "Dining car"
+    vehicle_type: passenger
+    length: 26.4          # m
+    mass: 52.0           # t
+    load_limit: 12.0     # t
+    speed_limit: 200     # km/h
+    brakes:
+      friction_brake:
+        model_fidelity: "table"  # "table" or "calculated"
+        service_brake_effort: # Full service brake force in kN
+        emergency_brake_effort: # Full emergency brake force in kN 
+        brake_regime: "P" # "P","G" or "R"
+        brake_effort:
+          - speed:   0.0 # in km/h
+            force: 94.400 # in kN
+          - speed:  10.0 # in km/h
+            force: 80.000 # in kN
+  - id: Bpmmz
+    description: "Second class coach"
+    vehicle_type: passenger
+    length: 26.4          # m
+    mass: 45.0           # t
+    load_limit: 16.0     # t
+    speed_limit: 200     # km/h
+    brakes:
+      friction_brake:
+        model_fidelity: "table"  # "table" or "calculated"
+        service_brake_effort: # Full service brake force in kN
+        emergency_brake_effort: # Full emergency brake force in kN 
+        brake_regime: "P" # "P","G" or "R"
+        brake_effort:
+          - speed:   0.0 # in km/h
+            force: 94.400 # in kN
+          - speed:  10.0 # in km/h
+            force: 80.000 # in kN

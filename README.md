@@ -80,6 +80,7 @@ The schema uses common railway units for all numerical values:
 | Speed            | km/h | Kilometers per hour |
 | Mass             | t    | Metric tons |
 | Length           | m    | Meters |
+| Time             | s    | Seconds |
 | Force            | kN   | Kilonewton |
 | Power            | kW   | Kilowatt |
 | Acceleration     | m/s² | Meters per second squared |

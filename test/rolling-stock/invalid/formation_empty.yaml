@@ -1,8 +1,8 @@
 %YAML 1.2
 ---
 schema: https://railtoolkit.org/schema/rolling-stock.json
-schema_version: "2022.05"
+schema_version: "2024.07"
+model_fidelity: "detailed"
 trains:
-  - name: test
-    id: "1"
-    formation: []
+  - id: "1"
+    formation: []  # Invalid: formation array must have at least 1 item

@@ -2,13 +2,8 @@
 ---
 schema: https://railtoolkit.org/schema/rolling-stock.json
 schema_version: "2024.07"
-model_fidelity: "detailed"
 trains:
   - id: "train1"
     train_type: "regional"
     formation: ["vehicle1"]
-vehicles:
-  - id: "vehicle1"
-    vehicle_type: "traction unit"
-    length: 20
-    mass: 80 
+    loading_factor: []  # Invalid: array must have at least 1 item 

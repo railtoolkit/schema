@@ -1,9 +1,12 @@
 %YAML 1.2
 ---
 schema: https://railtoolkit.org/schema/rolling-stock.json
-schema_version: "2022.05"
+schema_version: "2024.07"
+model_fidelity: "detailed"
 vehicles:
-  - name: test
-    id: "1"
-    vehicle_type: freight
-    mass: 1
+  - id: "1"
+    vehicle_type: "freight"
+    mass: 80
+    speed_limit: 100
+    load_limit: 100
+    # length missing - required field

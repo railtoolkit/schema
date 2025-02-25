@@ -13,7 +13,9 @@ vehicles:
     vehicle_type: "traction unit"
     length: 20
     mass: 80
+    load_limit: 0
   - id: "vehicle2"
     vehicle_type: "passenger"
     length: 26.4
     mass: 32 
+    load_limit: 10

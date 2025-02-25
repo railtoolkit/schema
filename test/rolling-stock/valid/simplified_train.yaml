@@ -10,5 +10,6 @@ trains:
       speed_limit: 160
       length: 200
       acceleration: 0.5
-      deceleration: 0.65  # Invalid: should be negative
+      deceleration: -0.65
+      emergency_deceleration: -1.2
       coasting: -0.1 

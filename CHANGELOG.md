@@ -20,7 +20,14 @@ Categories: Added, Changed, Deprecated, Removed, Fixed, and Security.
   * added `hydraulic` and `misc` to power_type options
   * added `non-revenue` to vehicle_type options
   * added complete schema for `simplified_characteristics` with required fields and constraints
-  * added `model_fidelity` attribute with default value "effort_tables"
+  * added `coasting` parameter to simplified characteristics
+  * added `emergency_deceleration` to simplified characteristics
+  * added `model_fidelity` attribute on different levels
+  * added comprehensive brake model configuration with multiple fidelity levels
+  * added detailed brake types: eddy_current_brake, electrodynamic_brake, and friction_brake
+  * added brake timing parameters: reaction_time, response_time, threshold_time
+  * added new train types: snow_removal, construction, emergency
+  * added comprehensive documentation for all attributes and model fidelity levels
 
 ### Changed
 * running path:
@@ -32,7 +39,10 @@ Categories: Added, Changed, Deprecated, Removed, Fixed, and Security.
   * changed rotation_mass description to specify >= 1
   * changed train requirements to need either `formation` or `simplified_characteristics`
   * changed `train_type` to include comprehensive list of train service types
-  * changed `model_fidelity` to be optional with default value
+  * changed brake modeling to support multiple fidelity levels
+  * changed model_fidelity to be required at top level and component levels
+  * refined train_type categories into passenger, freight, and special groups
+  * improved documentation with detailed explanations of model fidelity rationale
 
 ### Removed
 * running path:

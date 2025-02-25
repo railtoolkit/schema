@@ -1,0 +1,35 @@
+%YAML 1.2
+---
+schema: https://railtoolkit.org/schema/rolling-stock.json
+schema_version: "2024.07"
+model_fidelity: "detailed"
+vehicles:
+  - id: "vehicle1"
+    vehicle_type: "traction unit"
+    length: 20
+    mass: 80
+    load_limit: 100
+    speed_limit: 160
+    power_type: "electric"
+    resistance:
+      model_fidelity: "calculated"
+      rotation_mass: 1.1
+      base_resistance: 2.5
+      rolling_resistance: 0.001
+      air_resistance: 0.004
+    traction:
+      model_fidelity: "table"
+      tractive_effort:
+        - speed: 0
+          force: 300
+        - speed: 50
+          force: 200
+        - speed: 100
+          force: 100
+    brakes:
+      model_fidelity: "force"
+      friction_brake:
+        model_fidelity: "calculated"
+        service_brake_effort: 150
+        emergency_brake_effort: 200
+        brake_regime: "P" 

@@ -16,6 +16,24 @@
       "const": "2024.07",
       "pattern": "[2-9][0-9][0-9][0-9].[0-1][0-9]"
     },
+    "$defs": {
+      "id": {
+        "type": "string",
+        "description": "Identifier of the train or vehicle"
+      },
+      "speed": {
+        "type": "number",
+        "description": "Speed in kilometers per hour"
+      },
+      "length": {
+        "type": "number",
+        "description": "Length in meters"
+      },
+      "resistance": {
+        "type": "number",
+        "description": "Resistance in per mille"
+      }
+    },  
     "paths": {
       "type": "array",
       "minItems": 1,
@@ -24,10 +42,7 @@
         "required": [ "id", "characteristic_sections" ],
         "type": "object",
         "properties": {
-          "id": {
-            "description": "Identifier of the running path",
-            "type": "string"
-          },
+          "id": { "$ref": "#/$defs/id" },
           "description": {
             "description": "Description of the running path",
             "type": "string"
@@ -47,19 +62,12 @@
                 ]}
               ],
               "properties": {
-                "position": {
-                  "description": "Position along the path (m)",
-                  "type": "number"
-                },
+                "position": { "$ref": "#/$defs/length" },
                 "speed": {
-                  "description": "Maximum permitted speed (km/h)",
-                  "type": "number",
+                  "$ref": "#/$defs/speed",
                   "minimum": 0
                 },
-                "resistance": {
-                  "description": "Track resistance (‰)",
-                  "type": "number"
-                }
+                "resistance": { "$ref": "#/$defs/resistance" }
               }
             }
           },
@@ -75,14 +83,8 @@
                 "measure"
               ],
               "properties": {
-                "position": {
-                  "description": "Position along the path (m)",
-                  "type": "number"
-                },
-                "id": {
-                  "description": "Identifier of the point of interest",
-                  "type": "string"
-                },
+                "id": { "$ref": "#/$defs/id" },
+                "position": { "$ref": "#/$defs/length" },
                 "description": {
                   "description": "Description of the point of interest",
                   "type": "string"

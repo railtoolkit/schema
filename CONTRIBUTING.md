@@ -5,20 +5,35 @@ email, or any other method with the owners of this repository before making a ch
 
 Please note we have a code of conduct, please follow it in all your interactions with the project.
 
-# Pull Request Process
+## Pull Request Process
 
-## Minor Changes and Fixes
+### Minor Changes and Fixes
 
-TODO: DESCRIPTION
+For minor changes and fixes:
+1. Ensure your code follows the existing style and conventions
+2. Update the documentation if necessary
+3. Add tests for any new functionality
+4. Make sure all tests pass locally
+5. Create a Pull Request with a clear description of the changes
 
-## Breaking Changes
+### Breaking Changes
 
-TODO: DESCRIPTION
+For breaking changes:
+1. Open an issue first to discuss the proposed changes
+2. Document all breaking changes clearly in your Pull Request
+3. Update all relevant documentation
+4. Add or update tests to cover the changes
+5. Update the version number according to [Calendar Versioning](https://calver.org)
+6. Provide migration instructions if applicable
 
 ## Roadmap
 
-  * include breaking model in rolling-stock schema
-  * fallback with constant acceleration and deceleration
+Current development priorities:
+* test braking model in rolling-stock schema
+* improve braking model in rolling-stock schema
+* add model for interlocking
+* add model for topology
+* add model for timetbling and blocking times
 
 ## Add yourself as a contributor
 

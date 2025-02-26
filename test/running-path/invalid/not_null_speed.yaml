@@ -7,6 +7,6 @@ paths:
     id: "1"
     characteristic_sections:
       - position:   0.0
-        speed:      0
+        speed:     -0.1
       - position:   0.1
         speed:      0

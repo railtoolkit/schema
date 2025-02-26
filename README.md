@@ -68,7 +68,8 @@ Each test suite includes:
 
 See 
 * [Rolling-Stock.md](doc/Rolling-Stock.md) and 
-* [Running-Path.md](doc/Running-Path.md) 
+* [Running-Path.md](doc/Running-Path.md)
+
 for information about the used attributes in the sub schemas.
 
 ### Units
@@ -114,7 +115,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) file if you are interested to contribute.
   
   [![Open Source Initiative Approved License logo](https://149753425.v2.pressablecdn.com/wp-content/uploads/2009/06/OSIApproved_100X125.png "Open Source Initiative Approved License logo")](https://opensource.org)
 
-  Copyright (c) 2022 - 2024, Martin Scheidt (orcid.org/0000-0002-9384-8945) (ISC License)
+  Copyright (c) 2022 - 2025, Martin Scheidt (orcid.org/0000-0002-9384-8945) (ISC License)
 
   Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
 

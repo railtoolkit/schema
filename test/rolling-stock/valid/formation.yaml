@@ -1,0 +1,21 @@
+%YAML 1.2
+---
+schema: https://railtoolkit.org/schema/rolling-stock.json
+schema_version: "2024.07"
+model_fidelity: "detailed"
+trains:
+  - id: "train1"
+    train_type: "regional"
+    description: "Test train with formation"
+    formation: ["vehicle1", "vehicle2"]
+vehicles:
+  - id: "vehicle1"
+    vehicle_type: "traction_unit"
+    length: 20
+    mass: 80
+    load_limit: 0
+  - id: "vehicle2"
+    vehicle_type: "passenger"
+    length: 26.4
+    mass: 32 
+    load_limit: 10

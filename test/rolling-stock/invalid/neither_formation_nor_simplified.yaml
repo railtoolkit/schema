@@ -4,7 +4,6 @@ schema: https://railtoolkit.org/schema/rolling-stock.json
 schema_version: "2024.07"
 model_fidelity: "detailed"
 trains:
-  - name: test
-    id: "1"
-    formation: ["1"]
-    train_type: "maintenance"
+  - id: "train1"
+    train_type: "regional"
+    description: "Missing both formation and simplified_characteristics" 

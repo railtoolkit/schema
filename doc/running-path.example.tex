@@ -1,0 +1,292 @@
+%!TEX TS-program = pdflatexmk
+
+% Copyright (c) 2025, Martin Scheidt (ISC license)
+% Permission to use, copy, modify, and/or distribute this file for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
+
+\documentclass[tikz,convert={density=300,outext=.png}]{standalone}
+\usepackage{tikz-trackschematic}
+\usepackage{etoolbox}
+\newtoggle{DEBUG}
+\settoggle{DEBUG}{false}
+
+\begin{document}
+  \begin{tikzpicture}[font=\sffamily]
+  % coordinates
+  \coordinate (E01)  at ( 0, 0);
+  \coordinate (P01)  at ([shift={( 1, 0)}] E01);
+  \coordinate (S01)  at ([shift={( 1, 0)}] P01);
+  \coordinate (CP01) at ([shift={( 1, 0)}] S01);
+  \coordinate (T01)  at ([shift={( 1, 0)}] CP01);
+  %
+  \coordinate (CP02) at ([shift={(-1, 1)}] T01);
+  \coordinate (S02)  at ([shift={(-1, 0)}] CP02);
+  \coordinate (P02)  at ([shift={(-1, 0)}] S02);
+  \coordinate (E02)  at ([shift={(-1, 0)}] P02);
+  %
+  \coordinate (CP03) at ([shift={( 1, 0)}] T01);
+  \coordinate (S03)  at ([shift={( 1, 0)}] CP03);
+  \coordinate (G01)  at ([shift={( 1, 0)}] S03);
+  \coordinate (VP04) at ([shift={( 1, 0)}] G01);
+  \coordinate (DS03) at ([shift={( 1, 0)}] VP04);
+  \coordinate (DS04) at ([shift={( 1, 0)}] DS03);
+  \coordinate (VP03) at ([shift={( 1, 0)}] DS04);
+  \coordinate (G02)  at ([shift={( 1, 0)}] VP03);
+  \coordinate (S04)  at ([shift={( 1, 0)}] G02);
+  \coordinate (CP04) at ([shift={( 1, 0)}] S04);
+  \coordinate (S05)  at ([shift={( 1, 0)}] CP04);
+  \coordinate (G03)  at ([shift={( 1, 0)}] S05);
+  \coordinate (VP06) at ([shift={( 1, 0)}] G03);
+  \coordinate (DS05) at ([shift={( 1, 0)}] VP06);
+  \coordinate (G04)  at (DS05);
+  \coordinate (DS06) at ([shift={( 1, 0)}] DS05);
+  \coordinate (VP05) at ([shift={( 1, 0)}] DS06);
+  \coordinate (VP09) at ([shift={( 1, 0)}] VP05);
+  \coordinate (S06)  at ([shift={( 1, 0)}] VP09);
+  \coordinate (CP05) at ([shift={( 1, 0)}] S06);
+  \coordinate (T02)  at ([shift={( 1, 0)}] CP05);
+  \coordinate (CP06) at ([shift={( 1, 0)}] T02);
+  \coordinate (S07)  at ([shift={( 1, 0)}] CP06);
+  %
+  \coordinate (CP07) at ([shift={( 1, 1)}] T02);
+  \coordinate (S08)  at ([shift={( 1, 0)}] CP07);
+  \coordinate (P04)  at ([shift={( 1, 0)}] S08);
+  \coordinate (S10)  at ([shift={( 1, 0)}] P04);
+  \coordinate (CP09) at ([shift={( 1, 0)}] S10);
+  %
+  \coordinate (P03)  at ([shift={( 1, 0)}] S07);
+  \coordinate (S09)  at ([shift={( 1, 0)}] P03);
+  \coordinate (CP08) at ([shift={( 1, 0)}] S09);
+  \coordinate (T03)  at ([shift={( 1, 0)}] CP08);
+  \coordinate (CP10) at ([shift={( 1, 0)}] T03);
+  \coordinate (VP12) at ([shift={( 1, 0)}] CP10);
+  \coordinate (S11)  at ([shift={( 1, 0)}] VP12);
+  \coordinate (G05)  at ([shift={( 1, 0)}] S11);
+  \coordinate (DS12) at ([shift={( 1, 0)}] G05);
+  \coordinate (VP07) at ([shift={( 1, 0)}] DS12);
+  \coordinate (DS11) at ([shift={( 1, 0)}] VP07);
+  \coordinate (G06)  at ([shift={( 1, 0)}] DS11);
+  \coordinate (S12)  at ([shift={( 1, 0)}] G06);
+  \coordinate (VP11) at ([shift={( 1, 0)}] S12);
+  \coordinate (CP11) at ([shift={( 1, 0)}] VP11);
+  \coordinate (S13)  at ([shift={( 1, 0)}] CP11);
+  \coordinate (G07)  at ([shift={( 1, 0)}] S13);
+  \coordinate (VP14) at ([shift={( 1, 0)}] G07);
+  \coordinate (DS13) at ([shift={( 1, 0)}] VP14);
+  \coordinate (DS14) at ([shift={( 1, 0)}] DS13);
+  \coordinate (G08)  at ([shift={( 1, 0)}] DS14);
+  \coordinate (VP13) at ([shift={( 1, 0)}] G08);
+  \coordinate (S14)  at ([shift={( 1, 0)}] VP13);
+  \coordinate (CP12) at ([shift={( 1, 0)}] S14);
+  \coordinate (T04)  at ([shift={( 1, 0)}] CP12);
+  \coordinate (CP13) at ([shift={( 1, 0)}] T04);
+  \coordinate (S15)  at ([shift={( 1, 0)}] CP13);
+  \coordinate (CP14) at ([shift={( 1, 1)}] T04);
+  \coordinate (S16)  at ([shift={( 1, 0)}] CP14);
+  \coordinate (P05)  at ([shift={( 1, 0)}] S15);
+  \coordinate (E03)  at ([shift={( 1, 0)}] P05);
+  \coordinate (P06)  at ([shift={( 1, 0)}] S16);
+  \coordinate (E04)  at ([shift={( 1, 0)}] P06);
+
+  { %% topology
+    % tracks
+    \maintrack (E01) -- (P01) -- (S01) -- (CP01) -- (T01) -- (CP03) -- (S03) -- (G01) -- (VP04) -- (DS03) -- (DS04) -- (VP03) -- (G02) -- (S04) -- (CP04) -- (S05) -- (G03) -- (VP06) -- (DS05) -- (G04) -- (VP05) -- (VP09) -- (S06) -- (CP05) -- (T02) -- (CP06) -- (S07) -- (P03) -- (S09) -- (CP08) -- (T03) -- (CP10) -- (VP12) -- (S11) -- (G05) -- (DS12) -- (VP07) -- (DS11) -- (G06) -- (S12) -- (VP11) -- (CP11) -- (S13) -- (G07) -- (VP14) -- (DS13) -- (DS14) -- (G08) -- (VP13) -- (S14) -- (CP12) -- (T04) -- (CP13) -- (S15) -- (P05) -- (E03);
+    \maintrack (T01) -- (CP02) -- (S02) -- (P02) -- (E02);
+    \maintrack (T02) -- (CP07) -- (S08) -- (P04) -- (S10) -- (CP09) -- (T03);
+    \maintrack (T04) -- (CP14) -- (S16) -- (P06) -- (E04);
+    \tracklabel at (P01) label (A1);
+    \tracklabel at (P02) label (A2);
+    \tracklabel at (P03) label (B1);
+    \tracklabel at (P04) label (B2);
+    \tracklabel at (P05) label (C1);
+    \tracklabel at (P06) label (C2);
+    \tracklabel at (G01) label (AB1);
+    \tracklabel at (G03) label (AB2);
+    \tracklabel at (G05) label (BC1);
+    \tracklabel at (G07) label (BC2);
+
+    % turnouts
+    \turnout[backward,branch=left] at (T01) label (T1);
+    \turnout[forward ,branch=left] at (T02) label (T2);
+    \turnout[backward,branch=left] at (T03) label (T3);
+    \turnout[forward ,branch=left] at (T04) label (T4);
+
+    % bufferstops
+    \bufferstop[backward] at (E01);
+    \bufferstop[backward] at (E02);
+    \bufferstop[forward]  at (E03);
+    \bufferstop[forward]  at (E04);
+  }
+  { %% traffic control
+    % signals
+    \signal[route,forward] at (S01) label (S1);
+    \signal[route,forward,shift label={(0.5,-0.2)}] at (S02) label (S2);
+    \signal[route,backward] at (S03) label (S3);
+    \signal[distant,backward] at (DS03) label (dS3);
+    \signal[distant,forward] at (DS04) label (dS4);
+    \signal[block,forward] at (S04) label (S4);
+    \signal[block,backward] at (S05) label (S5);
+    \signal[distant,backward] at (DS05) label (dS5);
+    \signal[distant,forward] at (DS06) label (dS6);
+    \signal[route,distant,forward] at (S06) label (S6);
+    \signal[route,backward,shift label={(-0.5,0.2)}] at (S07) label (S7);
+    \signal[route,backward] at (S08) label (S8);
+    \signal[route,forward] at (S09) label (S9);
+    \signal[route,forward,shift label={(0.5,-0.2)}] at (S10) label (S10);
+    \signal[route,distant,backward] at (S11) label (S11);
+    \signal[distant,forward] at (DS12) label (dS12);
+    \signal[distant,backward] at (DS11) label (dS11);
+    \signal[block,forward] at (S12) label (S12);
+    \signal[block,backward] at (S13) label (S13);
+    \signal[distant,backward] at (DS13) label (dS13);
+    \signal[distant,forward] at (DS14) label (dS14);
+    \signal[route,forward] at (S14) label (S14);
+    \signal[route,backward,shift label={(-0.5,0.2)}] at (S15) label (S15);
+    \signal[route,backward] at (S16) label (S16);
+
+    \viewpoint[forward] at (VP04);
+    \viewpoint[forward] at (VP06);
+    \viewpoint[forward] at (VP09);
+    \viewpoint[forward] at (VP12);
+    \viewpoint[forward] at (VP14);
+    \viewpoint[backward] at (VP03);
+    \viewpoint[backward] at (VP05);
+    \viewpoint[backward] at (VP07);
+    \viewpoint[backward] at (VP11);
+    \viewpoint[backward] at (VP13);
+    
+    % clearing points
+    \tikzset{every node/.style={backward}};
+    \clearingpoint[shift label={( 0  ,0.5)}] at (CP01) label (CP1);
+    \clearingpoint[shift label={( 0  ,0.5)}] at (CP02) label (CP2);
+    \clearingpoint[shift label={( 0  ,0  )}] at (CP03) label (CP3);
+    \clearingpoint[shift label={(-0.5,0.5)}] at (CP04) label (CP4);
+    \clearingpoint[shift label={( 0  ,0.5)}] at (CP05) label (CP5);
+    \clearingpoint[shift label={( 0  ,0  )}] at (CP06) label (CP6);
+    \clearingpoint[shift label={(-0.5,0.5)}] at (CP07) label (CP7);
+    \clearingpoint[shift label={( 0  ,0.5)}] at (CP08) label (CP8);
+    \clearingpoint[shift label={( 0  ,0.5)}] at (CP09) label (CP9);
+    \clearingpoint[shift label={( 0  ,0  )}] at (CP10) label (CP10);
+    \clearingpoint[shift label={(-0.5,0.5)}] at (CP11) label (CP11);
+    \clearingpoint[shift label={( 0  ,0.5)}] at (CP12) label (CP12);
+    \clearingpoint[shift label={( 0  ,0  )}] at (CP13) label (CP13);
+    \clearingpoint[shift label={(-0.5,0.5)}] at (CP14) label (CP14);
+  }
+  { %% constructions
+    % platforms
+    \tikzset{every node/.style={length=1.7cm}};
+    \platform[side=left ] at (P01);
+    \platform[side=right] at (P02);
+    \platform[side=left ] at (P03);
+    \platform[side=right] at (P04);
+    \platform[side=left ] at (P05);
+    \platform[side=right] at (P06);
+  }
+  { %% measures
+    % legend resistance
+    \coordinate (UPPER) at (0,-0.75);
+    \coordinate (LOWER) at (0,-3.75);
+    \xdef\min{-10}
+    \xdef\max{20}
+    \tikzstyle{legend_resistance}=[\hectometercolor,line width=0.07pt]
+    \draw[legend_resistance] let \p1=(E01),\p2=(E03),\n{value}={-10},\n{min}={\min},\n{max}={\max},\n{range}={\n{max} - \n{min}},\p{UPPER}=(UPPER),\p{LOWER}=(LOWER),\n{scaledY}={(\n{value} - \n{min}) / \n{range} * (\y{UPPER} - \y{LOWER}) + \y{LOWER}} in (\x1,\n{scaledY}) coordinate (L1) -- ++(-0.2,0) node[left,align=right] {\n{value}} -- (\x2,\n{scaledY});
+    \draw[legend_resistance] let \p1=(E01),\p2=(E03),\n{value}={ -5},\n{min}={\min},\n{max}={\max},\n{range}={\n{max} - \n{min}},\p{UPPER}=(UPPER),\p{LOWER}=(LOWER),\n{scaledY}={(\n{value} - \n{min}) / \n{range} * (\y{UPPER} - \y{LOWER}) + \y{LOWER}} in (\x1,\n{scaledY}) coordinate (L2) -- ++(-0.2,0) node[left,align=right] {\n{value}} -- (\x2,\n{scaledY});
+    \draw[legend_resistance] let \p1=(E01),\p2=(E03),\n{value}={0.0},\n{min}={\min},\n{max}={\max},\n{range}={\n{max} - \n{min}},\p{UPPER}=(UPPER),\p{LOWER}=(LOWER),\n{scaledY}={(\n{value} - \n{min}) / \n{range} * (\y{UPPER} - \y{LOWER}) + \y{LOWER}} in (\x1,\n{scaledY}) coordinate (L3) -- ++(-0.2,0) node[left,align=right] {\n{value}} -- (\x2,\n{scaledY});
+    \draw[legend_resistance] let \p1=(E01),\p2=(E03),\n{value}={5.0},\n{min}={\min},\n{max}={\max},\n{range}={\n{max} - \n{min}},\p{UPPER}=(UPPER),\p{LOWER}=(LOWER),\n{scaledY}={(\n{value} - \n{min}) / \n{range} * (\y{UPPER} - \y{LOWER}) + \y{LOWER}} in (\x1,\n{scaledY}) coordinate (L4) -- ++(-0.2,0) node[left,align=right] {\n{value}} -- (\x2,\n{scaledY});
+    \draw[legend_resistance] let \p1=(E01),\p2=(E03),\n{value}={10.0},\n{min}={\min},\n{max}={\max},\n{range}={\n{max} - \n{min}},\p{UPPER}=(UPPER),\p{LOWER}=(LOWER),\n{scaledY}={(\n{value} - \n{min}) / \n{range} * (\y{UPPER} - \y{LOWER}) + \y{LOWER}} in (\x1,\n{scaledY}) coordinate (L5) -- ++(-0.2,0) node[left,align=right] {\n{value}} -- (\x2,\n{scaledY});
+    \draw[legend_resistance] let \p1=(E01),\p2=(E03),\n{value}={15.0},\n{min}={\min},\n{max}={\max},\n{range}={\n{max} - \n{min}},\p{UPPER}=(UPPER),\p{LOWER}=(LOWER),\n{scaledY}={(\n{value} - \n{min}) / \n{range} * (\y{UPPER} - \y{LOWER}) + \y{LOWER}} in (\x1,\n{scaledY}) coordinate (L6) -- ++(-0.2,0) node[left,align=right] {\n{value}} -- (\x2,\n{scaledY});
+    \draw[legend_resistance] let \p1=(E01),\p2=(E03),\n{value}={20.0},\n{min}={\min},\n{max}={\max},\n{range}={\n{max} - \n{min}},\p{UPPER}=(UPPER),\p{LOWER}=(LOWER),\n{scaledY}={(\n{value} - \n{min}) / \n{range} * (\y{UPPER} - \y{LOWER}) + \y{LOWER}} in (\x1,\n{scaledY}) coordinate (L7) -- ++(-0.2,0) node[left,align=right] {\n{value}} -- (\x2,\n{scaledY});
+
+    % resistance
+    \path let \p1=(E01),\n{value}={0},\n{min}={\min},\n{max}={\max},\n{range}={\n{max} - \n{min}},\p{UPPER}=(UPPER),\p{LOWER}=(LOWER),\n{scaledY}={(\n{value} - \n{min}) / \n{range} * (\y{UPPER} - \y{LOWER}) + \y{LOWER}} in coordinate (R01) at (\x1,\n{scaledY});
+    \path let \p1=(G01),\n{value}={1},\n{min}={\min},\n{max}={\max},\n{range}={\n{max} - \n{min}},\p{UPPER}=(UPPER),\p{LOWER}=(LOWER),\n{scaledY}={(\n{value} - \n{min}) / \n{range} * (\y{UPPER} - \y{LOWER}) + \y{LOWER}} in coordinate (R02) at (\x1,\n{scaledY});
+    \path let \p1=(G02),\n{value}={2},\n{min}={\min},\n{max}={\max},\n{range}={\n{max} - \n{min}},\p{UPPER}=(UPPER),\p{LOWER}=(LOWER),\n{scaledY}={(\n{value} - \n{min}) / \n{range} * (\y{UPPER} - \y{LOWER}) + \y{LOWER}} in coordinate (R03) at (\x1,\n{scaledY});
+    \path let \p1=(G03),\n{value}={5},\n{min}={\min},\n{max}={\max},\n{range}={\n{max} - \n{min}},\p{UPPER}=(UPPER),\p{LOWER}=(LOWER),\n{scaledY}={(\n{value} - \n{min}) / \n{range} * (\y{UPPER} - \y{LOWER}) + \y{LOWER}} in coordinate (R04) at (\x1,\n{scaledY});
+    \path let \p1=(DS06),\n{value}={-3},\n{min}={\min},\n{max}={\max},\n{range}={\n{max} - \n{min}},\p{UPPER}=(UPPER),\p{LOWER}=(LOWER),\n{scaledY}={(\n{value} - \n{min}) / \n{range} * (\y{UPPER} - \y{LOWER}) + \y{LOWER}} in coordinate (R05) at (\x1,\n{scaledY});
+    \path let \p1=(S06),\n{value}={2},\n{min}={\min},\n{max}={\max},\n{range}={\n{max} - \n{min}},\p{UPPER}=(UPPER),\p{LOWER}=(LOWER),\n{scaledY}={(\n{value} - \n{min}) / \n{range} * (\y{UPPER} - \y{LOWER}) + \y{LOWER}} in coordinate (R06) at (\x1,\n{scaledY});
+    \path let \p1=(G05),\n{value}={-10},\n{min}={\min},\n{max}={\max},\n{range}={\n{max} - \n{min}},\p{UPPER}=(UPPER),\p{LOWER}=(LOWER),\n{scaledY}={(\n{value} - \n{min}) / \n{range} * (\y{UPPER} - \y{LOWER}) + \y{LOWER}} in coordinate (R07) at (\x1,\n{scaledY});
+    \path let \p1=(G06),\n{value}={15},\n{min}={\min},\n{max}={\max},\n{range}={\n{max} - \n{min}},\p{UPPER}=(UPPER),\p{LOWER}=(LOWER),\n{scaledY}={(\n{value} - \n{min}) / \n{range} * (\y{UPPER} - \y{LOWER}) + \y{LOWER}} in coordinate (R08) at (\x1,\n{scaledY});
+    \path let \p1=(G07),\n{value}={-10},\n{min}={\min},\n{max}={\max},\n{range}={\n{max} - \n{min}},\p{UPPER}=(UPPER),\p{LOWER}=(LOWER),\n{scaledY}={(\n{value} - \n{min}) / \n{range} * (\y{UPPER} - \y{LOWER}) + \y{LOWER}} in coordinate (R09) at (\x1,\n{scaledY});
+    \path let \p1=(G08),\n{value}={20},\n{min}={\min},\n{max}={\max},\n{range}={\n{max} - \n{min}},\p{UPPER}=(UPPER),\p{LOWER}=(LOWER),\n{scaledY}={(\n{value} - \n{min}) / \n{range} * (\y{UPPER} - \y{LOWER}) + \y{LOWER}} in coordinate (R10) at (\x1,\n{scaledY});
+    \path let \p1=(S14),\n{value}={-1},\n{min}={\min},\n{max}={\max},\n{range}={\n{max} - \n{min}},\p{UPPER}=(UPPER),\p{LOWER}=(LOWER),\n{scaledY}={(\n{value} - \n{min}) / \n{range} * (\y{UPPER} - \y{LOWER}) + \y{LOWER}} in coordinate (R11) at (\x1,\n{scaledY});
+    \path let \p1=(E03),\n{value}={-1},\n{min}={\min},\n{max}={\max},\n{range}={\n{max} - \n{min}},\p{UPPER}=(UPPER),\p{LOWER}=(LOWER),\n{scaledY}={(\n{value} - \n{min}) / \n{range} * (\y{UPPER} - \y{LOWER}) + \y{LOWER}} in coordinate (R12) at (\x1,\n{scaledY});
+    
+    \draw[blue,line width=1pt] (R01) -| (R02) -| (R03) -| (R04) -| (R05) -| (R06) -| (R07) -| (R08) -| (R09) -| (R10) -| (R11) -| (R12);
+
+    % hectometer posts
+    \coordinate (HM) at (0,-4);
+    \tikzset{hectometer base={(HM)},orientation=right};
+    \hectometer[] at (E01)  label ( 0.000);
+    \hectometer[] at (P01)  label ( 0.100);
+    \hectometer[] at (S01)  label ( 0.220);
+    \hectometer[] at (CP01) label ( 0.320);
+    \hectometer[] at (T01)  label ( 0.350);
+    \hectometer[] at (CP03) label ( 0.390);
+    \hectometer[] at (S03)  label ( 0.500);
+    \hectometer[] at (G01)  label ( 1.000);
+    \hectometer[] at (VP04) label ( 1.450);
+    \hectometer[] at (DS03) label ( 1.500);
+    \hectometer[] at (DS04) label ( 1.700);
+    \hectometer[] at (VP03) label ( 1.750);
+    \hectometer[] at (G02)  label ( 2.000);
+    \hectometer[] at (S04)  label ( 2.700);
+    \hectometer[] at (CP04) label ( 2.800);
+    \hectometer[] at (S05)  label ( 2.900);
+    \hectometer[] at (G03)  label ( 3.000);
+    \hectometer[] at (VP06) label ( 3.750);
+    \hectometer[] at (DS05) label ( 3.900);
+    \hectometer[] at (DS06) label ( 4.000);
+    \hectometer[] at (VP05) label ( 4.150);
+    \hectometer[] at (VP09) label ( 4.750);
+    \hectometer[] at (S06)  label ( 5.000);
+    \hectometer[] at (CP05) label ( 5.100);
+    \hectometer[] at (T02)  label ( 5.130);
+    \hectometer[] at (CP06) label ( 5.170);
+    \hectometer[] at (S07)  label ( 5.270);
+    \hectometer[] at (P03)  label ( 5.500);
+    \hectometer[] at (S09)  label ( 5.650);
+    \hectometer[] at (CP08) label ( 5.750);
+    \hectometer[] at (T03)  label ( 5.780);
+    \hectometer[] at (VP12) label ( 5.800);
+    \hectometer[] at (CP10) label ( 5.810);
+    \hectometer[] at (S11)  label ( 5.910);
+    \hectometer[] at (G05)  label ( 6.000);
+    \hectometer[] at (DS12) label ( 6.100);
+    \hectometer[] at (VP07) label ( 6.160);
+    \hectometer[] at (DS11) label ( 6.910);
+    \hectometer[] at (G06)  label ( 7.000);
+    \hectometer[] at (S12)  label ( 7.100);
+    \hectometer[] at (VP11) label ( 7.160);
+    \hectometer[] at (CP11) label ( 7.200);
+    \hectometer[] at (S13)  label ( 7.300);
+    \hectometer[] at (G07)  label ( 8.000);
+    \hectometer[] at (VP14) label ( 8.150);
+    \hectometer[] at (DS13) label ( 8.300);
+    \hectometer[] at (DS14) label ( 8.400);
+    \hectometer[] at (G08)  label ( 8.500);
+    \hectometer[] at (VP13) label ( 8.550);
+    \hectometer[] at (S14)  label ( 9.400);
+    \hectometer[] at (CP12) label ( 9.500);
+    \hectometer[] at (T04)  label ( 9.530);
+    \hectometer[] at (CP13) label ( 9.560);
+    \hectometer[] at (S15)  label ( 9.660);
+    \hectometer[] at (P05)  label ( 9.800);
+    \hectometer[] at (E03)  label ( 9.950);
+
+  }
+  \iftoggle{DEBUG}{
+  % help lines and points
+  \foreach \point in {
+    E01,E02,E03,E04,
+    CP01,CP02,CP03,CP04,CP05,CP06,CP07,CP08,CP09,CP10,CP11,CP12,CP13,CP14,
+    S01,S02,S03,S04,S05,S06,S07,S08,S09,S10,S11,S12,S13,S14,S15,S16,
+    P01,P02,P03,P04,P05,P06,
+    T01,T02,T03,T04,
+    G01,G02,G03,G04,G05,G06,G07,G08,
+    VP03,VP04,VP05,VP06,VP07,VP09,VP11,VP12,VP13,VP14,
+    DS03,DS04,DS05,DS06,DS11,DS12,DS13,DS14,
+    UPPER,LOWER,HM,
+    R01,R02,R03,R04,R05,R06,R07,R08,R09,R10,R11,R12}
+      \fill[magenta,thin,font=\tiny] (\point) circle (0.05) node[above] {\point};
+  }{}
+  \end{tikzpicture}
+\end{document}

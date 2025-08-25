@@ -1,0 +1,10 @@
+%YAML 1.2
+---
+schema: https://railtoolkit.org/schema/running-path.json
+schema_version: "2024.07"
+paths:
+  - id: "logical-errors"
+    characteristic_sections:
+      - position: 0.0     # m
+        speed: -160       # km/h (invalid negative speed)
+        resistance: 1.00  # ‰ 

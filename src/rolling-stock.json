@@ -1,46 +1,103 @@
 {
-  "$comment": "================[HEADER]=====================",
   "$id": "https://railtoolkit.org/schema/rolling-stock.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Rolling Stock",
   "description": "Rolling stock data",
   "type": "object",
-  "$comment": "=================[BODY]======================",
-  "required": [ "schema", "schema_version" ],
+  "required": [ "schema", "schema_version", "model_fidelity" ],
   "anyOf": [
     {"required": [ "trains" ] },
     {"required": [ "vehicles" ] }
   ],
-  "$comment": "in alphabetical order",
+  "$defs": {
+    "id": {
+      "type": "string",
+      "description": "Identifier of the train or vehicle"
+    },
+    "speed": {
+      "type": "number",
+      "description": "Speed in kilometers per hour"
+    },
+    "time": {
+      "type": "number",
+      "description": "Time in seconds"
+    },
+    "length": {
+      "type": "number",
+      "description": "Length in meters"
+    },
+    "mass": {
+      "type": "number",
+      "description": "Mass in metric tons"
+    },
+    "force": {
+      "type": "number",
+      "description": "Force in kN"
+    },
+    "power": {
+      "type": "number",
+      "description": "Power in kW"
+    },
+    "resistance": {
+      "type": "number",
+      "description": "Resistance in per mille"
+    },
+    "acceleration": {
+      "type": "number",
+      "description": "Acceleration in m/s²"
+    },
+    "effort": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["speed", "force"],
+        "properties": {
+          "speed": { "$ref": "#/$defs/speed", "minimum": 0 },
+          "force": { "$ref": "#/$defs/force" }
+        }
+      }
+    }
+  },
   "properties": {
     "schema": {
       "description": "Identifier of the schema",
-      "enum": [ "https://railtoolkit.org/schema/rolling-stock.json" ]
+      "const": "https://railtoolkit.org/schema/rolling-stock.json"
     },
     "schema_version": {
       "description": "Version of the schema",
       "type": "string",
+      "const": "2024.07",
       "pattern": "[2-9][0-9][0-9][0-9].[0-1][0-9]"
+    },
+    "model_fidelity": {
+      "description": "Level of detail for train dynamics modeling. Defaults to 'detailed' if not specified",
+      "type": "string",
+      "enum": [ "simplified", "detailed" ]
     },
     "trains": {
       "type": "array",
       "minItems": 1,
       "items": {
-        "required": [ "name", "id", "formation" ],
         "type": "object",
+        "required": [ "id" ],
+        "anyOf": [
+          {"required": [ "formation" ]},
+          {"required": [ "simplified_characteristics" ]}
+        ],
         "properties": {
-          "id": {
-            "description": "Identifier of the train",
+          "id": { "$ref": "#/$defs/id" },
+          "description": {
+            "description": "Description of the train",
             "type": "string"
           },
-          "name": {
-            "description": "Name of the train",
-            "type": "string"
-          },
-          "UUID": {
-            "description": "The unique identifier for a train",
+          "train_type": {
+            "description": "Type of train service",
             "type": "string",
-            "format": "uuid"
+            "enum": [
+              "long_distance", "regional", "suburban", "metro",
+              "intermodal", "heavy_freight", "block_freight", "shunting",
+              "maintenance", "construction", "emergency", "snow_removal"
+            ]
           },
           "formation": {
             "description": "Collection of vehicles that form the train",
@@ -50,53 +107,88 @@
             "items": {
               "type": "string"
             }
+          },
+          "loading_factor": {
+            "description": "Loading factor of the train",
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": false,
+            "items": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          },
+          "simplified_characteristics": {
+            "description": "Basic motion parameters when using simplified model fidelity",
+            "type": "object",
+            "required": ["speed_limit", "length", "acceleration", "deceleration"],
+            "properties": {
+              "speed_limit": {
+                "$ref": "#/$defs/speed",
+                "exclusiveMinimum": 0
+              },
+              "length": {
+                "$ref": "#/$defs/length",
+                "exclusiveMinimum": 0
+              },
+              "acceleration": {
+                "$ref": "#/$defs/acceleration",
+                "exclusiveMinimum": 0
+              },
+              "deceleration": {
+                "$ref": "#/$defs/acceleration",
+                "exclusiveMaximum": 0
+              },
+              "emergency_deceleration": {
+                "$ref": "#/$defs/acceleration",
+                "exclusiveMaximum": 0
+              },
+              "coasting": {
+                "$ref": "#/$defs/acceleration",
+                "exclusiveMaximum": 0,
+                "default": 0
+              }
+            }
           }
         }
       }
     },
     "vehicles": {
-      "type": "array",
+      "type": "array", 
       "minItems": 1,
       "items": {
-        "required": [ "name", "id", "vehicle_type", "length", "mass" ],
+        "required": ["id", "vehicle_type", "length", "mass"],
         "type": "object",
         "properties": {
-          "air_resistance": {
-            "description": "coefficient for air resistance in permil",
-            "type": "number",
-            "exclusiveMinimum": 0
+          "id": { "$ref": "#/$defs/id" },
+          "load_limit": {
+            "$ref": "#/$defs/mass",
+            "default": 0
           },
-          "base_resistance": {
-            "description": "coefficient for basic resistance in permil",
-            "type": "number",
-            "exclusiveMinimum": 0
-          },
-          "id": {
-            "description": "Identifier of the vehicle",
-            "type": "string"
+          "vehicle_type": {
+            "description": "Type of vehicle",
+            "enum": ["traction_unit", "freight", "passenger", "multiple_unit", "non-revenue"]
           },
           "length": {
-            "description": "The length of the vehicle in meter",
-            "type": "number",
-            "exclusiveMinimum": 0
-          },
-          "load_limit": {
-            "description": "The maximum permitted load of the vehicle in metric ton",
-            "type": "number",
-            "exclusiveMinimum": 0
-          },
-          "mass_traction": {
-            "description": "The mass on the powered axles of the vehicle in metric ton",
-            "type": "number",
+            "$ref": "#/$defs/length",
             "exclusiveMinimum": 0
           },
           "mass": {
-            "description": "The empty mass of the vehicle in metric ton",
-            "type": "number",
+            "$ref": "#/$defs/mass",
             "exclusiveMinimum": 0
           },
-          "name": {
-            "description": "Name of the vehicle",
+          "mass_traction": {
+            "$ref": "#/$defs/mass",
+            "exclusiveMinimum": 0,
+            "default": 0
+          },
+          "speed_limit": {
+            "$ref": "#/$defs/speed",
+            "exclusiveMinimum": 0
+          },
+          "description": {
+            "description": "Description of the vehicle",
             "type": "string"
           },
           "picture": {
@@ -106,47 +198,146 @@
           },
           "power_type": {
             "description": "Type of propulsion",
-            "enum": [ "diesel", "electric", "steam" ]
+            "enum": ["hydraulic", "electric", "steam", "misc"]
           },
-          "rolling_resistance": {
-            "description": "coefficient for resistance of rolling axles in permil",
-            "type": "number",
-            "exclusiveMinimum": 0
-          },
-          "rotation_mass": {
-            "description": "Factor for rotating mass; >= 1",
-            "type": "number",
-            "minimum": 1
-          },
-          "speed_limit": {
-            "description": "Maximum permitted speed in kilometers per hour",
-            "type": "number",
-            "exclusiveMinimum": 0
-          },
-          "tractive_effort": {
-            "description": "Tractive effort as pairs of speed in kilometers per hour and tractive force in newton",
-            "type": "array",
-            "minItems": 3,
-            "uniqueItems": true,
-            "items": {
-              "type": "array",
-              "minItems": 2,
-              "maxItems": 2,
-              "uniqueItems": true,
-              "items": {
+          "resistance": {
+            "type": "object",
+            "required": ["model_fidelity"],
+            "anyOf": [
+              {"required": [ "rotation_mass", "base_resistance", "rolling_resistance", "air_resistance" ] },
+              {"required": [ "resistance_effort" ] }
+            ],
+            "properties": {
+              "model_fidelity": {
+                "type": "string",
+                "enum": ["table", "calculated"]
+              },
+              "rotation_mass": {
+                "type": "number",
+                "minimum": 1
+              },
+              "base_resistance": {
                 "type": "number",
                 "minimum": 0
+              },
+              "rolling_resistance": {
+                "type": "number",
+                "minimum": 0
+              },
+              "air_resistance": {
+                "type": "number",
+                "minimum": 0
+              },
+              "resistance_effort": {
+                "$ref": "#/$defs/effort"
               }
             }
           },
-          "UUID": {
-            "description": "The unique identifier for a vehicle",
-            "type": "string",
-            "format": "uuid"
+          "traction": {
+            "type": "object",
+            "required": ["model_fidelity"],
+            "properties": {
+              "model_fidelity": {
+                "type": "string",
+                "enum": ["table", "calculated"]
+              },
+              "rated_power": {
+                "$ref": "#/$defs/power",
+                "minimum": 0
+              },
+              "initial_tractive_force": {
+                "$ref": "#/$defs/force",
+                "minimum": 0
+              },
+              "tractive_effort": {
+                "$ref": "#/$defs/effort"
+              }
+            }
           },
-          "vehicle_type": {
-            "description": "Type of vehicle",
-            "enum": [ "traction unit", "freight", "passenger", "multiple unit" ]
+          "brakes": {
+            "type": "object",
+            "required": ["model_fidelity"],
+            "anyOf": [
+              {"required": [ "deceleration" ] },
+              {"required": [ "eddy_current_brake" ] },
+              {"required": [ "electrodynamic_brake" ] },
+              {"required": [ "friction_brake" ] }
+            ],
+            "properties": {
+              "model_fidelity": {
+                "type": "string",
+                "enum": ["force", "one-part-deceleration", "two-part-deceleration", "three-part-deceleration"]
+              },
+              "reaction_time": { "$ref": "#/$defs/time", "minimum": 0 },
+              "response_time": { "$ref": "#/$defs/time", "minimum": 0 },
+              "threshold_time": { "$ref": "#/$defs/time", "minimum": 0 },
+              "deceleration": { "$ref": "#/$defs/acceleration", "maximum": 0 },
+              "emergency_deceleration": { "$ref": "#/$defs/acceleration", "maximum": 0 },
+              "eddy_current_brake": {
+                "type": "object",
+                "required": ["model_fidelity"],
+                "anyOf": [
+                  {"required": [ "min_speed", "max_brake_effort", "power", "brake_effort" ] },
+                  {"required": [ "brake_effort" ] }
+                ],
+                "properties": {
+                  "model_fidelity": {
+                    "type": "string",
+                    "enum": ["table", "calculated"]
+                  },
+                  "min_speed": { "type": "number", "minimum": 0 },
+                  "max_brake_effort": { "type": "number", "minimum": 0 },
+                  "power": { "type": "number", "minimum": 0 },
+                  "brake_effort": {
+                    "$ref": "#/$defs/effort"
+                  }
+                }
+              },
+              "electrodynamic_brake": {
+                "type": "object",
+                "required": ["model_fidelity"],
+                "anyOf": [
+                  {"required": [ "max_brake_force", "speed_control_range", "speed_power_limit", "speed_field_weakening", "brake_effort" ] },
+                  {"required": [ "brake_effort" ] }
+                ],
+                "properties": {
+                  "model_fidelity": {
+                    "type": "string",
+                    "enum": ["table", "calculated"]
+                  },
+                  "max_brake_force": { "type": "number", "minimum": 0 },
+                  "speed_control_range": { "type": "number", "minimum": 0 },
+                  "speed_power_limit": { "type": "number", "minimum": 0 },
+                  "speed_field_weakening": { "type": "number", "minimum": 0 },
+                  "brake_effort": {
+                    "$ref": "#/$defs/effort"
+                  }
+                }
+              },
+              "friction_brake": {
+                "type": "object",
+                "required": ["model_fidelity"],
+                "anyOf": [
+                  {"required": [ "service_brake_effort", "emergency_brake_effort", "brake_regime" ] },
+                  {"required": [ "brake_effort" ] }
+                ],
+                "properties": {
+                  "model_fidelity": {
+                    "type": "string",
+                    "enum": ["table", "calculated"]
+                  },
+                  "service_brake_effort": { "type": "number", "minimum": 0 },
+                  "emergency_brake_effort": { "type": "number", "minimum": 0 },
+                  "brake_regime": {
+                    "type": "string",
+                    "enum": ["P", "G", "R"]
+                  },
+                  "brake_effort": {
+                    "$ref": "#/$defs/effort"
+                  }
+                }
+              }
+            }
           }
         }
       }

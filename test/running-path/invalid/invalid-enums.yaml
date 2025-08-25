@@ -1,0 +1,11 @@
+%YAML 1.2
+---
+schema: https://railtoolkit.org/schema/running-path.json
+schema_version: "2024.07"
+paths:
+  - id: "invalid-enums"
+    points_of_interest:
+      - position: 1000.0
+        id: "point1"
+        measure: invalid  # Invalid measure value
+        groups: []  # Empty groups array 

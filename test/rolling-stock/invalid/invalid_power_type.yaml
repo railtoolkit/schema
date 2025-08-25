@@ -2,11 +2,9 @@
 ---
 schema: https://railtoolkit.org/schema/rolling-stock.json
 schema_version: "2024.07"
-model_fidelity: "detailed"
 vehicles:
-  - id: "1"
-    vehicle_type: "cargo"  # Invalid - not in enum
+  - id: "vehicle1"
+    vehicle_type: "traction_unit"
     length: 20
     mass: 80
-    speed_limit: 100
-    load_limit: 100
+    power_type: "diesel"  # Invalid power type - not in enum 

@@ -1,4 +1,4 @@
-# RailToolKit Schema
+# RailToolKit/schema
 
 [![License: ISC][license-img]][license-url] [![DOI][zenodo-img]][zenodo-url] [![Build Status][ci-img]][ci-url] [![All Contributors][Contributors-img]][Contributors-url]
 
@@ -6,49 +6,88 @@
 
 ## About
 
-  This repo collects the descriptions of the structure and the validation constraints of tools in the railtoolkit in JSON schemas. It is, therefore, an alternative to [RailML](https://www.railml.org/). The JSON schemas enable the validation of YAML files in [TrainRun.jl](https://github.com/railtoolkit/TrainRun.jl.git) and [rolling-stock](https://github.com/railtoolkit/rolling-stock.git).
+The RailToolkit/schema provides JSON schemas for railway operations data, offering a lightweight alternative to RailML. It focuses on two main aspects:
+
+1. Rolling Stock Schema
+   - Defines train and vehicle characteristics
+   - Supports both simplified and detailed modeling approaches
+   - Includes parameters like speed, mass, resistance, and tractive effort
+
+2. Running Path Schema
+   - Describes railway paths with speed limits and track resistance
+   - Supports points of interest (signals, platforms, etc.)
+   - Enables precise position-based path descriptions
+
+The schemas use standardized railway units and can be validated using standard JSON schema tools. They are designed to support railway simulation and planning tools while maintaining simplicity and ease of use.
 
 ## Prerequisite
 
-  You will need a validator to validate the schema against data. This package provides a helper script that uses the [Ajv JSON schema validator](https://ajv.js.org).
-  Ajv rquires to have [node](https://nodejs.org/) installed.
+You will need a validator to validate the schema against data. This package provides a helper script that uses the [Ajv JSON schema validator](https://ajv.js.org).
+Ajv requires to have [node](https://nodejs.org/) installed.
   
-  ```bash
-  $ node --version # test if node is installed
-  ```
+```bash
+$ node --version # test if node is installed
+```
 
 ## Usage
 
-  You will need the schema and some data. The repo contains among others the rolling-stock schema and example data:
-  ```bash
-  $ git clone https://github.com/railtoolkit/schema.git && cd schema
-  ```
+You will need the schema and some data. The repo contains among others the rolling-stock schema and example data:
+```bash
+$ git clone https://github.com/railtoolkit/schema.git && cd schema
+```
 
-  Install all project dependencies:
-  ```bash
-  $ npm install
-  ```
+Install all project dependencies:
+```bash
+$ npm install
+```
 
-  You can now validate if the data follows the schema:
-  ```bash
-  $ npm run validate:rolling-stock doc/rolling-stock.example.yaml
-  ```
-  This will return:
-  ```bash
-  $ doc/rolling-stock.example.yaml valid
-  ```
-  Or:
-  ```bash
-  $ npm run validate:running-path doc/running-path.example.yaml
-  ```
-  This will return:
-  ```bash
-  $ doc/running-path.example.yaml valid
-  ```
+You can validate if the data follows the schema:
+```bash
+$ npm run validate:rolling-stock doc/rolling-stock.example.yaml
+$ npm run validate:running-path doc/running-path.example.yaml
+```
+
+## Testing
+
+The repository includes comprehensive test suites for both schemas:
+
+```bash
+$ npm run test          # Run all tests
+$ npm run test:stock    # Run rolling-stock tests only
+$ npm run test:paths    # Run running-path tests only
+```
+
+Each test suite includes:
+- Example file validation
+- Valid test cases
+- Invalid test cases
 
 ## Documentation
 
-  see [Rolling-Stock.md](https://github.com/railtoolkit/schema/blob/main/doc/Rolling-Stock.md) and [Running-Path.md](https://github.com/railtoolkit/schema/blob/main/doc/Running-Path.md) for information about the used attributes.
+### Sub schemas
+
+See 
+* [Rolling-Stock.md](doc/Rolling-Stock.md) and 
+* [Running-Path.md](doc/Running-Path.md)
+
+for information about the used attributes in the sub schemas.
+
+### Units
+
+The schema uses common railway units for all numerical values:
+
+| Quantity         | Unit | Description |
+|------------------|------|-------------|
+| Speed            | km/h | Kilometers per hour |
+| Mass             | t    | Metric tons |
+| Length           | m    | Meters |
+| Time             | s    | Seconds |
+| Force            | kN   | Kilonewton |
+| Power            | kW   | Kilowatt |
+| Acceleration     | m/s² | Meters per second squared |
+| Resistance       | ‰    | Per mille (mm/m) |
+| Unit-less        | -    | Dimensionless values |
+
 
 ## Contributors
 
@@ -64,13 +103,11 @@
     </tr>
   </tbody>
 </table>
-
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
-
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-See [CONTRIBUTING.md](https://github.com/railtoolkit/schema/blob/main/CONTRIBUTING.md) file if you are interested to contribute.
+See [CONTRIBUTING.md](CONTRIBUTING.md) file if you are interested to contribute.
 
 ------------
 
@@ -78,7 +115,7 @@ See [CONTRIBUTING.md](https://github.com/railtoolkit/schema/blob/main/CONTRIBUTI
   
   [![Open Source Initiative Approved License logo](https://149753425.v2.pressablecdn.com/wp-content/uploads/2009/06/OSIApproved_100X125.png "Open Source Initiative Approved License logo")](https://opensource.org)
 
-  Copyright (c) 2022, Martin Scheidt \<m.scheidt@tu-bs.de\> (ISC License)
+  Copyright (c) 2022 - 2025, Martin Scheidt (orcid.org/0000-0002-9384-8945) (ISC License)
 
   Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
 

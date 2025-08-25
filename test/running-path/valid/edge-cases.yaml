@@ -1,0 +1,23 @@
+%YAML 1.2
+---
+schema: https://railtoolkit.org/schema/running-path.json
+schema_version: "2024.07"
+paths:
+  - id: "edge-cases"
+    description: "Test with edge cases"
+    points_of_interest:
+      - position: 1000.00
+        id: "point1"
+        description: "Unicode test: äöüß"
+        groups: ["group1", "group2", "group3"]
+        measure: front
+      - position: 1000.00
+        id: "point2"
+        measure: rear
+    characteristic_sections:
+      - position: 0.0
+        speed: 999999
+        resistance: 0.00
+      - position: 999999.999
+        speed: 0.1
+        resistance: -999.99 

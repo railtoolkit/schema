@@ -1,0 +1,9 @@
+%YAML 1.2
+---
+schema: https://railtoolkit.org/schema/rolling-stock.json
+schema_version: "2024.07"
+# model_fidelity missing - required field
+trains:
+  - id: "train1"
+    train_type: "regional"
+    formation: ["vehicle1"] 

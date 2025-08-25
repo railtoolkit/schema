@@ -4,7 +4,7 @@ schema: https://railtoolkit.org/schema/rolling-stock.json
 schema_version: "2024.07"
 vehicles:
   - id: "vehicle1"
-    vehicle_type: "traction unit"
+    vehicle_type: "traction_unit"
     length: 20
     mass: 80
     tractive_effort: [

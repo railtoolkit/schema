@@ -16,6 +16,6 @@ trains:
     formation: ["vehicle1"]
 vehicles:
   - id: "vehicle1"
-    vehicle_type: "multiple unit"
+    vehicle_type: "multiple_unit"
     length: 25
     mass: 85 

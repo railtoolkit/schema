@@ -86,7 +86,7 @@ All attributes for a vehicle are collected under `vehicles: -` in alphabetical o
 | Attributes           | Data Type    | Necessity | Description |
 | -------------------- | ------------ | --------- | ----------- |
 | `id`                 | string       | required  | Identifier of the vehicle |
-| `vehicle_type`       | string       | required  | Type of vehicle; values: `traction unit`, `freight`, `passenger`, `multiple unit`, or `non-revenue` |
+| `vehicle_type`       | string       | required  | Type of vehicle; values: `traction_unit`, `freight`, `passenger`, `multiple_unit`, or `non-revenue` |
 | `mass`               | number       | required  | Empty mass (dead weight) (t)|
 | `length`             | number       | required  | Length of the vehicle (m) |
 | `load_limit`         | number       | optional  | Maximum permitted load (t), Defaults to 0 if not specified |

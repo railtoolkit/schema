@@ -168,7 +168,7 @@
           },
           "vehicle_type": {
             "description": "Type of vehicle",
-            "enum": ["traction unit", "freight", "passenger", "multiple unit", "non-revenue"]
+            "enum": ["traction_unit", "freight", "passenger", "multiple_unit", "non-revenue"]
           },
           "length": {
             "$ref": "#/$defs/length",

@@ -10,7 +10,7 @@ trains:
     formation: ["vehicle1", "vehicle2"]
 vehicles:
   - id: "vehicle1"
-    vehicle_type: "traction unit"
+    vehicle_type: "traction_unit"
     length: 20
     mass: 80
     load_limit: 0

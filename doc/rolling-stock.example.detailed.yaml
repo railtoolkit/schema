@@ -12,7 +12,7 @@ trains:
 
 vehicles:
   - id: Vectron
-    vehicle_type: traction unit
+    vehicle_type: traction_unit
     power_type: electric
     picture: https://commons.wikimedia.org/wiki/File:Siemens_Vectron_193_837.jpg
     description: "Siemens Vectron MS"

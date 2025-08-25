@@ -6,13 +6,13 @@
 
 ## Preamble
 
-| Attributes           | Necessity    | Description |
-| -------------------- | ------------ | ----------- |
-| `schema`             | required     | Identifier of the JSON schema. |
-| `schema_version`     | required     | Version of the JSON schema (current version `2024.07`). |
-| `model_fidelity`     | required     | Level of detail for train dynamics modeling. Values: `simplified`, `detailed`. |
-| `trains`             | optional[^1] | An array of [trains](#Attributes-in-trains). |
-| `vehicles`           | optional[^1] | An array of [vehicles](#Attributes-in-vehicles). |
+| Attributes           | Data Type    | Necessity    | Description |
+| -------------------- | ------------ | ------------ | ----------- |
+| `schema`             | string       | required     | Identifier of the JSON schema. |
+| `schema_version`     | string       | required     | Version of the JSON schema (current version `2024.07`). |
+| `model_fidelity`     | string       | required     | Level of detail for train dynamics modeling. Values: `simplified`, `detailed`. |
+| `trains`             | array        | optional[^1] | A list of [trains](#Attributes-in-trains). |
+| `vehicles`           | array        | optional[^1] | A list of [vehicles](#Attributes-in-vehicles). |
 
 [^1]: At least one of attributes `trains` or `vehicles` must be present.
 
@@ -32,14 +32,14 @@ The `model_fidelity` attribute is not only used at the top level but also plays 
 
 All attributes for a train are collected under the array `trains: -` in alphabetical order:
 
-| Attributes                   | Necessity    | Description |
-| ---------------------------- | ------------ | ----------- |
-| `id`                         | required     | Identifier of the train. |
-| `description`                | optional     | Description of the train. |
-| `train_type`                 | optional     | Type of train service. See [Train Types](#train-types) below. |
-| `simplified_characteristics` | optional[^2] | Basic motion parameters when using `simplified_characteristics` model fidelity. See [Simplified Characteristics](#simplified-characteristics) below. |
-| `formation`                  | optional[^2] | A Collection of vehicles that form the train referenced by vehicle `id`. Front and rear end of the train are defined by the first and last vehicle in the array. |
-| `loading_factor`             | optional     | Ratio (between 0 and 1) of the actual load to the maximum load capacity of the train. Using the `load_limit` attribute of the vehicles in the `formation` array. |
+| Attributes                   | Data Type    | Necessity    | Description |
+| ---------------------------- | ------------ | ------------ | ----------- |
+| `id`                         | string       | required     | Identifier of the train. |
+| `description`                | string       | optional     | Description of the train. |
+| `train_type`                 | string       | optional     | Type of train service. See [Train Types](#train-types) below. |
+| `simplified_characteristics` | object       | optional[^2] | Basic motion parameters when using `simplified_characteristics` model fidelity. See [Simplified Characteristics](#simplified-characteristics) below. |
+| `formation`                  | array        | optional[^2] | A Collection of vehicles that form the train referenced by vehicle `id`. Front and rear end of the train are defined by the first and last vehicle in the array. |
+| `loading_factor`             | array        | optional     | Ratio (between 0 and 1) of the actual load to the maximum load capacity of the train. Using the `load_limit` attribute of the vehicles in the `formation` array. |
 
 [^2]: At least one of attributes `formation` or `simplified_characteristics` must be present, depending on the selected `model_fidelity`.
 
@@ -69,49 +69,48 @@ The `train_type` attribute categorizes trains into three main groups:
 
 When using `model_fidelity: "simplified"`, the following attributes define the basic motion parameters of a train:
 
-| Attributes                   | Necessity | Description |
-| ---------------------------- | --------- | ----------- |
-| `speed_limit`                | required  | Maximum permitted speed (km/h) |
-| `length`                     | required  | Total length of the train (m) |
-| `acceleration`               | required  | Constant acceleration rate (m/s²) |
-| `deceleration`               | required  | Constant service braking rate (m/s²) (negative value) |
-| `emergency_deceleration`     | optional  | Emergency braking rate (m/s²) (negative value). If not specified, defaults to the value of `deceleration` |
-| `coasting`                   | optional  | Deceleration rate when coasting (m/s²) (negative value). Defaults to 0 if not specified |
-
+| Attributes                   | Data Type    | Necessity | Description |
+| ---------------------------- | ------------ | --------- | ----------- |
+| `speed_limit`                | number       | required  | Maximum permitted speed (km/h) |
+| `length`                     | number       | required  | Total length of the train (m) |
+| `acceleration`               | number       | required  | Constant acceleration rate (m/s²) |
+| `deceleration`               | number       | required  | Constant service braking rate (m/s²) (negative value) |
+| `emergency_deceleration`     | number       | optional  | Emergency braking rate (m/s²) (negative value). If not specified, defaults to the value of `deceleration` |
+| `coasting`                   | number       | optional  | Deceleration rate when coasting (m/s²) (negative value). Defaults to 0 if not specified |
 These simplified characteristics are used when detailed vehicle dynamics are not required or available. They provide a basic but efficient way to model train movement for high-level planning and simple simulations.
 
 ## Attributes in "vehicles"
 
 All attributes for a vehicle are collected under the array `vehicles: -` in alphabetical order:
 
-| Attributes           | Necessity | Description |
-| -------------------- | --------- | ----------- |
-| `id`                 | required  | Identifier of the vehicle |
-| `vehicle_type`       | required  | Type of vehicle; values: `traction unit`, `freight`, `passenger`, `multiple unit`, or `non-revenue` |
-| `mass`               | required  | Empty mass (dead weight) (t)|
-| `length`             | required  | Length of the vehicle (m) |
-| `load_limit`         | optional  | Maximum permitted load (t), Defaults to 0 if not specified |
-| `speed_limit`        | optional  | Maximum permitted speed (km/h) |
-| `description`        | optional  | Description of the vehicle |
-| `power_type`         | optional  | Type of propulsion; values: `hydraulic`, `electric`, `steam`, or `misc` |
-| `mass_traction`      | optional  | Mass on powered axles (t), Defaults to 0 if not specified |
-| `picture`            | optional  | A [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier) with a picture for humans | 
-| `resistance`         | optional  | Vehicle resistance characteristics. See [Resistance Configuration](#resistance-configuration) below. |
-| `traction`           | optional  | Traction characteristics. See [Traction Configuration](#traction-configuration) below. |
-| `brakes`             | optional  | Braking system configuration. See [Brakes Configuration](#brakes-configuration) below. In a Train formation, at least one vehicle must have a `brakes` object. |
+| Attributes           | Data Type    | Necessity | Description |
+| -------------------- | ------------ | --------- | ----------- |
+| `id`                 | string       | required  | Identifier of the vehicle |
+| `vehicle_type`       | string       | required  | Type of vehicle; values: `traction unit`, `freight`, `passenger`, `multiple unit`, or `non-revenue` |
+| `mass`               | number       | required  | Empty mass (dead weight) (t)|
+| `length`             | number       | required  | Length of the vehicle (m) |
+| `load_limit`         | number       | optional  | Maximum permitted load (t), Defaults to 0 if not specified |
+| `speed_limit`        | number       | optional  | Maximum permitted speed (km/h) |
+| `description`        | string       | optional  | Description of the vehicle |
+| `power_type`         | string       | optional  | Type of propulsion; values: `hydraulic`, `electric`, `steam`, or `misc` |
+| `mass_traction`      | number       | optional  | Mass on powered axles (t), Defaults to 0 if not specified |
+| `picture`            | string       | optional  | A [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier) with a picture for humans | 
+| `resistance`         | object       | optional  | Vehicle resistance characteristics. See [Resistance Configuration](#resistance-configuration) below. |
+| `traction`           | object       | optional  | Traction characteristics. See [Traction Configuration](#traction-configuration) below. |
+| `brakes`             | object       | optional  | Braking system configuration. See [Brakes Configuration](#brakes-configuration) below. In a Train formation, at least one vehicle must have a `brakes` object. |Data Type
 
 ### Resistance Configuration
 
 The `resistance` object defines the vehicle's resistance characteristics:
 
-| Attributes           | Necessity     | Description |
-| -------------------- | ------------- | ----------- |
-| `model_fidelity`     | required      | Type of resistance model; values: `table` or `calculated`. |
-| `rotation_mass`      | optional[^3]  | Factor for rotating mass (-), greater or equal to 1. |
-| `base_resistance`    | optional[^3]  | Basic resistance coefficient (‰). |
-| `rolling_resistance` | optional[^3]  | Rolling resistance coefficient (-). |
-| `air_resistance`     | optional[^3]  | Air resistance coefficient (-). |
-| `resistance_effort`  | optional[^4]  | [Array of speed-force pairs](#array-of-speed-force-pairs) defining resistance. |
+| Attributes           | Data Type    | Necessity     | Description |
+| -------------------- | ------------ | ------------- | ----------- |
+| `model_fidelity`     | string       | required      | Type of resistance model; values: `table` or `calculated`. |
+| `rotation_mass`      | number       | optional[^3]  | Factor for rotating mass (-), greater or equal to 1. |
+| `base_resistance`    | number       | optional[^3]  | Basic resistance coefficient (‰). |
+| `rolling_resistance` | number       | optional[^3]  | Rolling resistance coefficient (-). |
+| `air_resistance`     | number       | optional[^3]  | Air resistance coefficient (-). |
+| `resistance_effort`  | array        | optional[^4]  | [Array of speed-force pairs](#array-of-speed-force-pairs) defining resistance. |
 
 [^3]: Required when using `model_fidelity: "calculated"`
 [^4]: Required when using `model_fidelity: "table"`
@@ -120,12 +119,12 @@ The `resistance` object defines the vehicle's resistance characteristics:
 
 The `traction` object defines the vehicle's traction characteristics:
 
-| Attributes              | Necessity     | Description |
-| ----------------------- | ------------- | ----------- |
-| `model_fidelity`        | required      | Type of traction model; values: `table` or `calculated`. |
-| `rated_power`           | optional[^5]  | Rated power of the vehicle (kW). |
-| `initial_tractive_force`| optional[^5]  | Initial tractive force (kN). |
-| `tractive_effort`       | optional[^6]  | [Array of speed-force pairs](#array-of-speed-force-pairs) defining tractive effort. |
+| Attributes              | Data Type    | Necessity     | Description |
+| ----------------------- | ------------ | ------------- | ----------- |
+| `model_fidelity`        | string       | required      | Type of traction model; values: `table` or `calculated`. |
+| `rated_power`           | number       | optional[^5]  | Rated power of the vehicle (kW). |
+| `initial_tractive_force`| number       | optional[^5]  | Initial tractive force (kN). |
+| `tractive_effort`       | array        | optional[^6]  | [Array of speed-force pairs](#array-of-speed-force-pairs) defining tractive effort. |
 
 [^5]: Required when using `model_fidelity: "calculated"`
 [^6]: Required when using `model_fidelity: "table"`
@@ -134,17 +133,17 @@ The `traction` object defines the vehicle's traction characteristics:
 
 The `brakes` object defines the vehicle's braking characteristics:
 
-| Attributes              | Necessity | Description |
-| ----------------------- | --------- | ----------- |
-| `model_fidelity`        | required  | Type of brake model; values: `force`, `one-part-deceleration`, `two-part-deceleration`, `three-part-deceleration` |
-| `deceleration`          | optional[^7]  | Final/maximum braking deceleration (m/s²). Negative value. |
-| `emergency_deceleration`| optional      | Maximum emergency braking deceleration (m/s²). Negative value. If not specified, defaults to the value of `deceleration`|
-| `reaction_time`         | optional[^8]  | Time between need recognition and control activation (s) |
-| `response_time`         | optional[^9]  | Time to reach 5% of final braking deceleration (s) |
-| `threshold_time`        | optional[^9]  | Time to develop from 5% to 95% of final deceleration (s) |
-| `eddy_current_brake`    | optional[^10] | Eddy current brake characteristics |
-| `electrodynamic_brake`  | optional[^10] | Electrodynamic brake characteristics |
-| `friction_brake`        | optional[^10] | Friction brake characteristics |
+| Attributes              | Data Type    | Necessity | Description |
+| ----------------------- | ------------ | --------- | ----------- |
+| `model_fidelity`        | string       | required  | Type of brake model; values: `force`, `one-part-deceleration`, `two-part-deceleration`, `three-part-deceleration` |
+| `deceleration`          | number       | optional[^7]  | Final/maximum braking deceleration (m/s²). Negative value. |
+| `emergency_deceleration`| number       | optional      | Maximum emergency braking deceleration (m/s²). Negative value. If not specified, defaults to the value of `deceleration`|
+| `reaction_time`         | number       | optional[^8]  | Time between need recognition and control activation (s) |
+| `response_time`         | number       | optional[^9]  | Time to reach 5% of final braking deceleration (s) |
+| `threshold_time`        | number       | optional[^9]  | Time to develop from 5% to 95% of final deceleration (s) |
+| `eddy_current_brake`    | object       | optional[^10] | Eddy current brake characteristics |
+| `electrodynamic_brake`  | object       | optional[^10] | Electrodynamic brake characteristics |
+| `friction_brake`        | object       | optional[^10] | Friction brake characteristics |
 
 [^7]: Required when using `model_fidelity: "one-part-deceleration"`, `model_fidelity: "two-part-deceleration"`, or `model_fidelity: "three-part-deceleration"`
 [^8]: Required when using `model_fidelity: "two-part-deceleration"` or `model_fidelity: "three-part-deceleration"`
@@ -154,42 +153,42 @@ The `brakes` object defines the vehicle's braking characteristics:
 The braking system can include one or more of these brake types:
 
 - `eddy_current_brake`
-  | Attributes              | Necessity     | Description |
-  | ----------------------- | ------------- | ----------- |
-  | `model_fidelity`        | required      | Type of eddy current brake model; values: `table` or `calculated`. |
-  | `min_speed`             | optional[^11] | Minimum speed for the brake to engage (km/h). Minimum value is 0. |
-  | `max_brake_effort`      | optional[^11] | Maximum brake effort (kN). Minimum value is 0. |
-  | `power`                 | optional[^11] | Power of the brake (kW). Minimum value is 0. |
-  | `brake_effort`          | optional[^12] | [Array of speed-force pairs](#array-of-speed-force-pairs) defining brake effort |
+  | Attributes              | Data Type    | Necessity     | Description |
+  | ----------------------- | ------------ | ------------- | ----------- |
+  | `model_fidelity`        | string       | required      | Type of eddy current brake model; values: `table` or `calculated`. |
+  | `min_speed`             | number       | optional[^11] | Minimum speed for the brake to engage (km/h). Minimum value is 0. |
+  | `max_brake_effort`      | number       | optional[^11] | Maximum brake effort (kN). Minimum value is 0. |
+  | `power`                 | number       | optional[^11] | Power of the brake (kW). Minimum value is 0. |
+  | `brake_effort`          | array        | optional[^12] | [Array of speed-force pairs](#array-of-speed-force-pairs) defining brake effort |
 
 - `electrodynamic_brake`
-  | Attributes              | Necessity     | Description |
-  | ----------------------- | ------------- | ----------- |
-  | `model_fidelity`        | required      | Type of electrodynamic brake model; values: `table` or `calculated`. |
-  | `max_brake_force`       | optional[^11] | Maximum brake force (kN). Minimum value is 0. |
-  | `speed_control_range`   | optional[^11] | Speed range for control (km/h). Minimum value is 0. |
-  | `speed_power_limit`     | optional[^11] | Speed limit for power (km/h). Minimum value is 0. |
-  | `speed_field_weakening` | optional[^11] | Field weakening speed (km/h). Minimum value is 0. |
-  | `brake_effort`          | optional[^12] | [Array of speed-force pairs](#array-of-speed-force-pairs) defining brake effort |
+  | Attributes              | Data Type    | Necessity     | Description |
+  | ----------------------- | ------------ | ------------- | ----------- |
+  | `model_fidelity`        | string       | required      | Type of electrodynamic brake model; values: `table` or `calculated`. |
+  | `max_brake_force`       | number       | optional[^11] | Maximum brake force (kN). Minimum value is 0. |
+  | `speed_control_range`   | number       | optional[^11] | Speed range for control (km/h). Minimum value is 0. |
+  | `speed_power_limit`     | number       | optional[^11] | Speed limit for power (km/h). Minimum value is 0. |
+  | `speed_field_weakening` | number       | optional[^11] | Field weakening speed (km/h). Minimum value is 0. |
+  | `brake_effort`          | array        | optional[^12] | [Array of speed-force pairs](#array-of-speed-force-pairs) defining brake effort |
 
 - `friction_brake`
-  | Attributes              | Necessity     | Description |
-  | ----------------------- | ------------- | ----------- |
-  | `model_fidelity`        | required      | Type of friction brake model; values: `table` or `calculated`. |
-  | `service_brake_effort`  | optional[^11] | Full service brake force (kN). Minimum value is 0. |
-  | `emergency_brake_effort`| optional[^11] | Full emergency brake force (kN). Minimum value is 0. |
-  | `brake_regime`          | optional[^11] | Brake regime type; values: `P`, `G`, or `R` |
-  | `brake_effort`          | optional[^12] | [Array of speed-force pairs](#array-of-speed-force-pairs) defining brake effort |
+  | Attributes              | Data Type    | Necessity     | Description |
+  | ----------------------- | ------------ | ------------- | ----------- |
+  | `model_fidelity`        | string       | required      | Type of friction brake model; values: `table` or `calculated`. |
+  | `service_brake_effort`  | number       | optional[^11] | Full service brake force (kN). Minimum value is 0. |
+  | `emergency_brake_effort`| number       | optional[^11] | Full emergency brake force (kN). Minimum value is 0. |
+  | `brake_regime`          | string       | optional[^11] | Brake regime type; values: `P`, `G`, or `R` |
+  | `brake_effort`          | array        | optional[^12] | [Array of speed-force pairs](#array-of-speed-force-pairs) defining brake effort |
 
 [^11]: Required when using `model_fidelity: "calculated"`
 [^12]: Required when using `model_fidelity: "table"`
 
 ### Array of speed-force pairs 
 
-| Attributes              | Necessity     | Description |
-| ----------------------- | ------------- | ----------- |
-| `speed`                 | required      | Speed at which the brake effort is applied (km/h) |
-| `force`                 | required      | Brake force applied at the specified speed (kN) |
+| Attributes              | Data Type    | Necessity     | Description |
+| ----------------------- | ------------ | ------------- | ----------- |
+| `speed`                 | number       | required      | Speed at which the brake effort is applied (km/h) |
+| `force`                 | number       | required      | Brake force applied at the specified speed (kN) |
 
 # Units
 

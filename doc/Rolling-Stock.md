@@ -30,7 +30,7 @@ The `model_fidelity` attribute is not only used at the top level but also plays 
 
 ## Attributes in "trains"
 
-All attributes for a train are collected under the array `trains: -` in alphabetical order:
+All attributes for a train are collected under `trains: -` in alphabetical order:
 
 | Attributes                   | Data Type    | Necessity    | Description |
 | ---------------------------- | ------------ | ------------ | ----------- |
@@ -81,7 +81,7 @@ These simplified characteristics are used when detailed vehicle dynamics are not
 
 ## Attributes in "vehicles"
 
-All attributes for a vehicle are collected under the array `vehicles: -` in alphabetical order:
+All attributes for a vehicle are collected under `vehicles: -` in alphabetical order:
 
 | Attributes           | Data Type    | Necessity | Description |
 | -------------------- | ------------ | --------- | ----------- |
@@ -110,7 +110,7 @@ The `resistance` object defines the vehicle's resistance characteristics:
 | `base_resistance`    | number       | optional[^3]  | Basic resistance coefficient (‰). |
 | `rolling_resistance` | number       | optional[^3]  | Rolling resistance coefficient (-). |
 | `air_resistance`     | number       | optional[^3]  | Air resistance coefficient (-). |
-| `resistance_effort`  | array        | optional[^4]  | [Array of speed-force pairs](#array-of-speed-force-pairs) defining resistance. |
+| `resistance_effort`  | array        | optional[^4]  | [List of speed-force pairs](#list-of-speed-force-pairs) defining resistance. |
 
 [^3]: Required when using `model_fidelity: "calculated"`
 [^4]: Required when using `model_fidelity: "table"`
@@ -124,7 +124,7 @@ The `traction` object defines the vehicle's traction characteristics:
 | `model_fidelity`        | string       | required      | Type of traction model; values: `table` or `calculated`. |
 | `rated_power`           | number       | optional[^5]  | Rated power of the vehicle (kW). |
 | `initial_tractive_force`| number       | optional[^5]  | Initial tractive force (kN). |
-| `tractive_effort`       | array        | optional[^6]  | [Array of speed-force pairs](#array-of-speed-force-pairs) defining tractive effort. |
+| `tractive_effort`       | array        | optional[^6]  | [List of speed-force pairs](#list-of-speed-force-pairs) defining tractive effort. |
 
 [^5]: Required when using `model_fidelity: "calculated"`
 [^6]: Required when using `model_fidelity: "table"`
@@ -159,7 +159,7 @@ The braking system can include one or more of these brake types:
   | `min_speed`             | number       | optional[^11] | Minimum speed for the brake to engage (km/h). Minimum value is 0. |
   | `max_brake_effort`      | number       | optional[^11] | Maximum brake effort (kN). Minimum value is 0. |
   | `power`                 | number       | optional[^11] | Power of the brake (kW). Minimum value is 0. |
-  | `brake_effort`          | array        | optional[^12] | [Array of speed-force pairs](#array-of-speed-force-pairs) defining brake effort |
+  | `brake_effort`          | array        | optional[^12] | [List of speed-force pairs](#list-of-speed-force-pairs) defining brake effort |
 
 - `electrodynamic_brake`
   | Attributes              | Data Type    | Necessity     | Description |
@@ -169,7 +169,7 @@ The braking system can include one or more of these brake types:
   | `speed_control_range`   | number       | optional[^11] | Speed range for control (km/h). Minimum value is 0. |
   | `speed_power_limit`     | number       | optional[^11] | Speed limit for power (km/h). Minimum value is 0. |
   | `speed_field_weakening` | number       | optional[^11] | Field weakening speed (km/h). Minimum value is 0. |
-  | `brake_effort`          | array        | optional[^12] | [Array of speed-force pairs](#array-of-speed-force-pairs) defining brake effort |
+  | `brake_effort`          | array        | optional[^12] | [List of speed-force pairs](#list-of-speed-force-pairs) defining brake effort |
 
 - `friction_brake`
   | Attributes              | Data Type    | Necessity     | Description |
@@ -178,12 +178,12 @@ The braking system can include one or more of these brake types:
   | `service_brake_effort`  | number       | optional[^11] | Full service brake force (kN). Minimum value is 0. |
   | `emergency_brake_effort`| number       | optional[^11] | Full emergency brake force (kN). Minimum value is 0. |
   | `brake_regime`          | string       | optional[^11] | Brake regime type; values: `P`, `G`, or `R` |
-  | `brake_effort`          | array        | optional[^12] | [Array of speed-force pairs](#array-of-speed-force-pairs) defining brake effort |
+  | `brake_effort`          | array        | optional[^12] | [List of speed-force pairs](#list-of-speed-force-pairs) defining brake effort |
 
 [^11]: Required when using `model_fidelity: "calculated"`
 [^12]: Required when using `model_fidelity: "table"`
 
-### Array of speed-force pairs 
+### List of speed-force pairs 
 
 | Attributes              | Data Type    | Necessity     | Description |
 | ----------------------- | ------------ | ------------- | ----------- |

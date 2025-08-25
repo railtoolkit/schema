@@ -10,7 +10,9 @@
 | -------------------- | --------- | ------------------------------------------------------ |
 | `schema`             | required  | Identifier of the JSON schema.                         |
 | `schema_version`     | required  | Version of the JSON schema.                            |
-| `paths`              | required  | An array of at least one [path](#Attributes-in-paths). |
+| `paths`              | required  | An array of at least one[^1] [path](#Attributes-in-paths). |
+
+[^1]: At least one item in `paths` should be present. For scaffolding purposes, `paths` can be empty.
 
 ## Attributes in "paths"
 
@@ -30,10 +32,10 @@ Characteristic sections are sections of a running path within which properties, 
 | Attributes           | Necessity | Description |
 | -------------------- | --------- | ----------- |
 | `position`           | required  | Position along the path (m) |
-| `speed`              | optional[^1] | Maximum permitted speed (km/h) |
-| `resistance`         | optional[^1] | Track resistance (‰) |
+| `speed`              | optional[^2] | Maximum permitted speed (km/h) |
+| `resistance`         | optional[^2] | Track resistance (‰) |
 
-[^1]: At least one of attributes `speed` or `resistance` must be present.
+[^2]: At least one of attributes `speed` or `resistance` must be present.
 
 ## Attributes in "points_of_interest"
 
